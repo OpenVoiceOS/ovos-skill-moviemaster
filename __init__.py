@@ -7,8 +7,9 @@ from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 
-from lingua_franca.format import pronounce_number, nice_date, nice_number
-from lingua_franca.util import fuzzy_match
+from ovos_number_parser import pronounce_number
+from ovos_date_parser import nice_date
+from ovos_utils.parse import fuzzy_match
 
 from tmdbv3api import TMDb, Movie, Person
 
