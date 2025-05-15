@@ -1,22 +1,16 @@
 from datetime import datetime
 
+from ovos_date_parser import nice_date
 from ovos_utils import classproperty
 from ovos_utils.log import LOG
-from ovos_workshop.intents import IntentBuilder
+from ovos_utils.parse import fuzzy_match
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
-
-from ovos_number_parser import pronounce_number
-from ovos_date_parser import nice_date
-from ovos_utils.parse import fuzzy_match
-
 from tmdbv3api import TMDb, Movie, Person
 
 
 class MovieMaster(OVOSSkill):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     @classproperty
     def runtime_requirements(self):
@@ -173,7 +167,7 @@ class MovieMaster(OVOSSkill):
                         datetime.strptime(self.active_movie.release_date.replace("-", " "), "%Y %m %d"))})
                 else:
                     self.speak_dialog("movie.year.error", {
-                                      "movie": self.active_movie.title})
+                        "movie": self.active_movie.title})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -199,7 +193,7 @@ class MovieMaster(OVOSSkill):
             # Create a list to store the cast to be included in the dialog
             actor_list, last_actor = self._create_dialog_list(cast)
             self.speak_dialog("movie.cast", {
-                              "movie": movie, "actorlist": actor_list, "lastactor": last_actor})
+                "movie": movie, "actorlist": actor_list, "lastactor": last_actor})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -252,10 +246,10 @@ class MovieMaster(OVOSSkill):
                 if len(genres) > 1:
                     genre_list, last_genre = self._create_dialog_list(genres)
                     self.speak_dialog("movie.genre.multiple", {
-                                      "genrelist": genre_list, "genrelistlast": last_genre})
+                        "genrelist": genre_list, "genrelistlast": last_genre})
                 else:
                     self.speak_dialog("movie.genre.single", {
-                                      "movie": movie, "genre": genres[0].name})
+                        "movie": movie, "genre": genres[0].name})
         # If the title can not be found, it creates an IndexError
         except IndexError:
             self.speak_dialog("no.info", {"movie": movie})
@@ -270,7 +264,7 @@ class MovieMaster(OVOSSkill):
             if self.active_movie:
                 movie_runtime = Movie().details(self.active_movie.id).runtime
                 self.speak_dialog("movie.runtime", {
-                                  "movie": movie, "runtime": movie_details.runtime})
+                    "movie": movie, "runtime": movie_runtime})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -293,7 +287,7 @@ class MovieMaster(OVOSSkill):
                     recommendation_list)
 
             self.speak_dialog("movie.recommendations", {
-                              "movielist": movie_list, "lastmovie": last_movie, "movie": movie})
+                "movielist": movie_list, "lastmovie": last_movie, "movie": movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -314,7 +308,7 @@ class MovieMaster(OVOSSkill):
             # Lets see...I think we will set up the dialog again.
             popular_movies, last_movie = self._create_dialog_list(movies)
             self.speak_dialog("movie.popular", {
-                              "popularlist": popular_movies, "lastmovie": last_movie})
+                "popularlist": popular_movies, "lastmovie": last_movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -339,4 +333,4 @@ class MovieMaster(OVOSSkill):
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no.info.general")
