@@ -1,52 +1,51 @@
 {
-    "/vocab/genre.movie.search.intent": [
-        "(listar|encontrar) (pel\u00edculas|filmes) que son (un| ) {genre}",
-        "(listar|encontrar) (pel\u00edculas|filmes) de {genre}"
-    ],
-    "/vocab/movie.popular.intent": [
-        "(Lista|Busca) (las|los) (peliculas|filmes) m\u00e1s populares",
-        "Cu\u00e1les son (las|los) (pel\u00edculas|flimes) m\u00e1s populares ahora"
-    ],
-    "/vocab/movie.information.intent": [
-        "(Averiguar|Obtener|Buscar) (informaci\u00f3n|info) acerca (de la|del) (pel\u00edcula|filme) {movie}",
-        "(Dame|Danos) (informaci\u00f3n|info) acerca (de la|del) (pel\u00edcula|filme) {movie}",
-        "(Tienes|Puedes obtener) (info|informaci\u00f3n) (de la|del) (pel\u00edcula|filme) {movie}"
-    ],
-    "/vocab/movie.production.intent": [
-        "(Qui\u00e9n|Qu\u00e9 compan\u00eda) (produjo|hizo) la pel\u00edcula {movie}"
-    ],
-    "/vocab/movie.top.intent": [
-        "(lista|cu\u00e1les son|busca) (las|los) (pel\u00edculas|filmes) (top|m\u00e1s populares|mejores en el ranking) en cartelera (|ahora)"
+    "/vocab/movie.year.intent": [
+        "(En qué año|Cuándo|En qué fecha) fue lanzado (la|el) (película|filme) {movie}"
     ],
     "/vocab/movie.genres.intent": [
-        "(A qu\u00e9|A cuales|A cual) (g\u00e9neros|g\u00e9nero) pertenece (la|el) (pel\u00edcula|filme) {movie} ",
-        "(Cuales|Cual) (son|es) (los|el) (g\u00e9neros|g\u00e9nero) (de la|del) (pel\u00edcula|filme) {movie}",
-        "A que (g\u00e9neros|g\u00e9nero) pertenece (la|el) (pel\u00edcula|filme) {movie}"
+        "(A qué|A cuales|A cual) (géneros|género) pertenece (la|el) (película|filme) {movie}",
+        "(Cuales|Cual) (son|es) (los|el) (géneros|género) (de la|del) (película|filme) {movie}",
+        "A que (géneros|género) pertenece (la|el) (película|filme) {movie}"
     ],
-    "/vocab/movie.recommendations.intent": [
-        "Recomienda (pel\u00edculas|filmes) (similares a|parecidas a) {movie}",
-        "Qu\u00e9 (pel\u00edculas|filmes) recomendarias (similares a|parecidas a) {movie}",
-        "(Lista|obtiene) (|buenas|buenos) (pel\u00edculas|filmes) similares a {movie}"
+    "/vocab/movie.information.intent": [
+        "(Averiguar|Obtener|Buscar) (información|info) acerca (de la|del) (película|filme) {movie}",
+        "(Dame|Danos) (información|info) acerca (de la|del) (película|filme) {movie}",
+        "(Tienes|Puedes obtener) (info|información) (de la|del) (película|filme) {movie}"
     ],
-    "/vocab/movie.year.intent": [
-        "(En qu\u00e9 a\u00f1o|Cu\u00e1ndo|En qu\u00e9 fecha) fue lanzado (la|el) (pel\u00edcula|filme) {movie}"
-    ],
-    "/vocab/movie.runtime.intent": [
-        "Cu\u00e1nto dura (la pel\u00edcula|el filme) {movie}",
-        "Cu\u00e1nto dura (la|el) (pel\u00edcula|filme) {movie}",
-        "Obtiene la duraci\u00f3n (de la|del) (pel\u00edcula|filme) {movie}"
+    "/vocab/movie.production.intent": [
+        "(Quién|Qué companía) (produjo|hizo) la película {movie}"
     ],
     "/vocab/movie.description.intent": [
-        "de qu\u00e9 ((se|) trata|va) la pel\u00edcula {movie}",
-        "(cu\u00e9ntame|cu\u00e9ntanos) acerca de la pel\u00edcula {movie}",
-        "(dame|danos) una (descripci\u00f3n|sinopsis) (de la|del) (pel\u00edcula|film) {movie}",
-        "."
+        "(cuéntame|cuéntanos) acerca de la película {movie}",
+        "(dame|danos) una (descripción|sinopsis) (de la|del) (película|film) {movie}",
+        "de qué ((se|) trata|va) la película {movie}"
     ],
-    "/vocab/genre.tv.search.intent": [
-        "(listar|encontrar|obtener) (programas de TV|programas de televisi\u00f3n|shows) que son del g\u00e9nero {genre}",
-        "(listar|encontrar|obtener) (programas de TV|programas de televisi\u00f3n|shows) del g\u00e9nero {genre}"
+    "/vocab/movie.recommendations.intent": [
+        "(Lista|obtiene) (|buenas|buenos) (películas|filmes) similares a {movie}",
+        "Qué (películas|filmes) recomendarias (similares a|parecidas a) {movie}",
+        "Recomienda (películas|filmes) (similares a|parecidas a) {movie}"
+    ],
+    "/vocab/movie.popular.intent": [
+        "(Lista|Busca) (las|los) (peliculas|filmes) más populares",
+        "Cuáles son (las|los) (películas|flimes) más populares ahora"
     ],
     "/vocab/movie.cast.intent": [
-        "Qui\u00e9n (act\u00faa|trabaja|est\u00e1|sale) en la pel\u00edcula {movie}"
+        "Quién (actúa|trabaja|está|sale) en la película {movie}"
+    ],
+    "/vocab/genre.movie.search.intent": [
+        "(listar|encontrar) (películas|filmes) de {genre}",
+        "(listar|encontrar) (películas|filmes) que son (un| ) {genre}"
+    ],
+    "/vocab/genre.tv.search.intent": [
+        "(listar|encontrar|obtener) (programas de TV|programas de televisión|shows) del género {genre}",
+        "(listar|encontrar|obtener) (programas de TV|programas de televisión|shows) que son del género {genre}"
+    ],
+    "/vocab/movie.runtime.intent": [
+        "Cuánto dura (la película|el filme) {movie}",
+        "Cuánto dura (la|el) (película|filme) {movie}",
+        "Obtiene la duración (de la|del) (película|filme) {movie}"
+    ],
+    "/vocab/movie.top.intent": [
+        "(lista|cuáles son|busca) (las|los) (películas|filmes) (top|más populares|mejores en el ranking) en cartelera (|ahora)"
     ]
 }
