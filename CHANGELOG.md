@@ -1,16 +1,8 @@
 # Changelog
 
-## [0.0.11a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.11a1) (2025-05-15)
+## [V0.0.11](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.11) (2025-05-15)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/V0.0.10...0.0.11a1)
-
-**Merged pull requests:**
-
-- fix: drop lingua\_franca [\#40](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/40) ([JarbasAl](https://github.com/JarbasAl))
-
-## [V0.0.10](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.10) (2025-05-15)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.10...V0.0.10)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.11...V0.0.11)
 
 
 
