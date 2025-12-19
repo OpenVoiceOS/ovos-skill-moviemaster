@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.13a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.13a2) (2025-12-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.13a1...0.0.13a2)
+
+**Merged pull requests:**
+
+- Update dependency python to 3.14 [\#44](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/44) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.0.13a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.13a1) (2025-12-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/V0.0.12...0.0.13a1)
