@@ -1,0 +1,55 @@
+{
+  "/vocab/movie.year.intent": [
+    null
+  ],
+  "/vocab/movie.genre.search.intent": [
+    null,
+    null
+  ],
+  "/vocab/movie.genres.intent": [
+    null,
+    null,
+    null
+  ],
+  "/vocab/movie.information.intent": [
+    null,
+    null,
+    null
+  ],
+  "/vocab/movie.production.intent": [
+    "(qui|quina companyia) (va produir|produí) (la pel·lícula|el film|) {movie}"
+  ],
+  "/vocab/movie.description.intent": [
+    null,
+    null,
+    null
+  ],
+  "/vocab/movie.recommendations.intent": [
+    null,
+    null,
+    null
+  ],
+  "/vocab/movie.popular.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (les|els|ses|es|) (pel·lícules|films|pel·lis|) que (són|siguin) (populars|de moda)",
+    null
+  ],
+  "/vocab/movie.cast.intent": [
+    "qui (actua|surt|apareix|aparix) en (la pel·lícula|el film|la pel·li) {movie}"
+  ],
+  "/vocab/genre.movie.search.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis|) que (són|siguin) (un|una| ) {genre}",
+    "(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis) (de |d'|){genre}"
+  ],
+  "/vocab/genre.tv.search.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (xous|espectacles)( de TV| de televisió|) (del|de) gènere {genre}",
+    "(llista|cerca|busca|troba)('m|-me|) (xous|espectacles)( de TV| de televisió|) {genre}"
+  ],
+  "/vocab/movie.runtime.intent": [
+    null,
+    null,
+    null
+  ],
+  "/vocab/movie.top.intent": [
+    null
+  ]
+}
