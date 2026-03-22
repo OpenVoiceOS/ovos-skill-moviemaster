@@ -1,2 +1,2 @@
-Le film {movie} appartient aux genres {genrelist} et {genrelistlast}.
-On classe généralement le film {movie} dans les genres {genrelist} et {genrelistlast}.
+Ce film appartient aux genres {genrelist} et {genrelistlast}.
+On classe généralement ce film dans les genres {genrelist} et {genrelistlast}.
