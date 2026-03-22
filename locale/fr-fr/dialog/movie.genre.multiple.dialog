@@ -1,2 +1,2 @@
-Le (movie|film|flick) peut être trouvé dans l'un des genres; {genrelist} et {genrelistlast}.
-Les gens considèrent le (movie|film) comme un {genrelist} ou un {genrelistlast}.
+Le film {movie} appartient aux genres {genrelist} et {genrelistlast}.
+On classe généralement le film {movie} dans les genres {genrelist} et {genrelistlast}.
