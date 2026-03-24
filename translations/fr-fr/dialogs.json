@@ -31,7 +31,7 @@
         "Les films {movielist} sont un bon choix si vous aimez le film {movie}"
     ],
     "/dialog/movie.info.response.dialog": [
-        "{movie} est sorti en {year}, avec un budget de {budget} dollars"
+        "Le film {movie} est sorti en {year} et son budget était de {budget} dollars."
     ],
     "/dialog/movie.top.dialog": [
         "Ce sont les film les (meilleurs|plus populaires) du moment; {toplist}",
@@ -41,7 +41,7 @@
         "Retour \u00e0 l'A P I par d\u00e9faut"
     ],
     "/dialog/movie.year.dialog": [
-        "Le film {movie} a \u00e9t\u00e9 (fait|tourn\u00e9|r\u00e9alis\u00e9|diffus\u00e9) en {year} "
+        "Le film {movie} est sorti en {year}."
     ],
     "/dialog/movie.genre.single.dialog": [
         "Le (movie|film) {movie} pourrait \u00eatre consid\u00e9r\u00e9 comme un {genre}.",
