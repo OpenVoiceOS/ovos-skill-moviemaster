@@ -1,0 +1,55 @@
+{
+  "/vocab/movie.year.intent": [
+    "(en quin any|quan|a quina data) es va (fer|gravar|produir) (la pel·lícula|el film|l'obra cinematogràfica) {movie}"
+  ],
+  "/vocab/movie.genre.search.intent": [
+    "(llista|troba) (pel·lícules|films|obres cinematogràfiques) que són {genre}",
+    "(llista|troba) (pel·lícules|films|obres cinematogràfiques) de {genre}"
+  ],
+  "/vocab/movie.genres.intent": [
+    "de (quins gèneres|quin gènere) és (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "a (quins gèneres|quin gènere) pertany (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "(quins gèneres són|quin gènere és) és (la pel·lícula|el film|l'obra cinematogràfica) {movie}"
+  ],
+  "/vocab/movie.information.intent": [
+    "(tens|em pots donar) (info|informació) (sobre|de) (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "(troba|aconsegueix|busca|hi ha) (informació|info) (de|sobre) (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "(dona'm|diga'm|proporciona'm|dona'ns|diga'ns|proporciona'ns|dona|digues|proporciona) (informació|info) (de|sobre) (la pel·lícula|el film|l'obra cinematogràfica) {movie}"
+  ],
+  "/vocab/movie.production.intent": [
+    "(qui|quina companyia) (va produir|produí) (la pel·lícula|el film|) {movie}"
+  ],
+  "/vocab/movie.description.intent": [
+    "(dona'm|proporciona'm|dona'ns|proporciona'ns|dona|proporciona) una (descripció|sinopsi) de (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "explica('m|'ns) sobre (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "de què va (la pel·lícula|el film|l'obra cinematogràfica) {movie}"
+  ],
+  "/vocab/movie.recommendations.intent": [
+    "(llista|digues) (|bones) (pel·lícules|obres cinematogràfiques) (similars|semblants) a {movie}",
+    "recomana (pel·lícules|films|obres cinematogràfiques) (similars|semblants) a {movie}",
+    "quines (pel·lícules|obres cinematogràfiques) (recomanaries|recomanes)(similars|semblants) a {movie}"
+  ],
+  "/vocab/movie.popular.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (les|els|ses|es|) (pel·lícules|films|pel·lis|) que (són|siguin) (populars|de moda)",
+    "quines són les (pel·lícules|obres cinematogràfiques) més populars (actuals|actualment|avui|avui dia|avui en dia|ara|ara per ara)"
+  ],
+  "/vocab/movie.cast.intent": [
+    "qui (actua|surt|apareix|aparix) en (la pel·lícula|el film|la pel·li) {movie}"
+  ],
+  "/vocab/genre.movie.search.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis|) que (són|siguin) (un|una| ) {genre}",
+    "(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis) (de |d'|){genre}"
+  ],
+  "/vocab/genre.tv.search.intent": [
+    "(llista|cerca|busca|troba)('m|-me|) (xous|espectacles)( de TV| de televisió|) (del|de) gènere {genre}",
+    "(llista|cerca|busca|troba)('m|-me|) (xous|espectacles)( de TV| de televisió|) {genre}"
+  ],
+  "/vocab/movie.runtime.intent": [
+    "Digues la duració de (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "Quant dura (la pel·lícula|el film|l'obra cinematogràfica) {movie}",
+    "Quina és la durada de (la pel·lícula|el film|l'obra cinematogràfica) {movie}"
+  ],
+  "/vocab/movie.top.intent": [
+    "(llista|quines són|busca) les (pel·lícules|obres cinematogràfiques) (més populars|més ben valorades) (actuals|actualment|avui|avui dia|avui en dia|ara|ara per ara)"
+  ]
+}
