@@ -1,0 +1,2 @@
+(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis) (de |d'|){genre}
+(llista|cerca|busca|troba)('m|-me|) (pel·lícules|films|pel·lis|) que (són|siguin) (un|una| ) {genre}
