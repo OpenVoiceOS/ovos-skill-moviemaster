@@ -1,2 +1,2 @@
-Ce sont les film les (meilleurs|plus populaires) du moment; {toplist}
-{toplist} sont (les meilleurs|les plus populaires) films du moment
+Les films les mieux notés du moment sont {toplist} et {lastmovie}.
+En ce moment, {toplist} et {lastmovie} font partie des films les mieux notés.

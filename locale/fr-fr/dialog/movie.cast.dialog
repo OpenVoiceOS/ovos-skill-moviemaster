@@ -1,2 +1,2 @@
-Les personnes suivantes (star|play|act) dans le film {movie} ; {actorlist} et {lastactor}
-Voici la distribution de {movie} ; {actorlist} et {lastactor}
+Voici la distribution du film {movie} : {actorlist} et {lastactor}.
+Dans le film {movie}, on retrouve {actorlist} et {lastactor}.
