@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.14a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a2) (2026-03-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a1...0.0.14a2)
+
+**Merged pull requests:**
+
+- fix: rename bare lang code locale directories [\#53](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/53) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+- Complete French Movie Master locale [\#52](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/52) ([goldyfruit](https://github.com/goldyfruit))
+- ca-es/translate [\#51](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/51) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
 ## [0.0.14a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a1) (2026-03-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.13a3...0.0.14a1)
