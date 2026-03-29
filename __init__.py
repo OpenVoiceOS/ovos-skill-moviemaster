@@ -7,7 +7,7 @@ from ovos_utils.parse import fuzzy_match
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
-from tmdbv3api import TMDb, Movie, Person
+from tmdbv3api import TMDb, Movie, Person, Genre, Discover
 
 
 class MovieMaster(OVOSSkill):
@@ -42,7 +42,7 @@ class MovieMaster(OVOSSkill):
         self._active_person = None
 
         self.settings_change_callback = self.on_settings_changed
-        TMDb().api_key = self.api_key
+        self._configure_tmdb()
 
     @property
     def api_key(self):
@@ -87,6 +87,7 @@ class MovieMaster(OVOSSkill):
         self._active_person = person_id
 
     def _search_for_movie(self, movie):
+        self._configure_tmdb()
         for m in Movie().search(movie):
             if fuzzy_match(m.title, movie) >= self.settings.get("match_confidence"):
                 self.active_movie = m
@@ -94,11 +95,72 @@ class MovieMaster(OVOSSkill):
                 break
 
     def _search_for_person(self, person):
+        self._configure_tmdb()
         for p in Person().search(person):
             if fuzzy_match(p.name, person) >= self.settings.get("match_confidence"):
                 self.active_person = p
                 LOG.debug(f"active person: {self.active_person}")
                 break
+
+    def _tmdb_language(self):
+        lang = (self.lang or "en-us").replace("_", "-")
+        if "-" in lang:
+            base, region = lang.split("-", 1)
+            return f"{base}-{region.upper()}"
+        return lang
+
+    def _configure_tmdb(self):
+        tmdb = TMDb()
+        tmdb.api_key = self.api_key
+        tmdb.language = self._tmdb_language()
+
+    def _match_genre(self, genre_name, media_type="movie"):
+        self._configure_tmdb()
+        genre_api = Genre()
+        genres = genre_api.movie_list() if media_type == "movie" else genre_api.tv_list()
+        genre_name = (genre_name or "").strip()
+        best_match = None
+        best_score = 0.0
+        for genre in genres:
+            score = fuzzy_match(genre.name.lower(), genre_name.lower())
+            if score > best_score:
+                best_score = score
+                best_match = genre
+        if best_match and best_score >= self.match_confidence:
+            return best_match
+        return None
+
+    def _discover_by_genre(self, genre_id, media_type="movie"):
+        self._configure_tmdb()
+        discover = Discover()
+        params = {
+            "with_genres": genre_id,
+            "sort_by": "popularity.desc"
+        }
+        if media_type == "tv":
+            return discover.discover_tv_shows(params)
+        return discover.discover_movies(params)
+
+    def _handle_genre_search(self, genre_name, media_type="movie"):
+        matched_genre = self._match_genre(genre_name, media_type)
+        if not matched_genre:
+            self.speak_dialog("no.info.general")
+            return
+
+        results = []
+        for result in self._discover_by_genre(matched_genre.id, media_type):
+            results.append(result)
+            if len(results) >= self.search_depth:
+                break
+
+        if not results:
+            self.speak_dialog("no.info.general")
+            return
+
+        result_list, last_result = self._create_dialog_list(results)
+        dialog = "genre.movie.search" if media_type == "movie" else "genre.tv.search"
+        self.speak_dialog(dialog, {"genre": matched_genre.name})
+        self.speak(f"{result_list}{last_result}")
 
     def _create_dialog_list(self, dialog_list):
         # create a list
@@ -120,6 +182,7 @@ class MovieMaster(OVOSSkill):
             "search_depth", self.search_depth)
         self.match_confidence = self.settings.get(
             "match_confidence", self.match_confidence)
+        self._configure_tmdb()
         LOG.debug(f"settings changed to {self.settings}")
 
     def verify_api(self, api_key):
@@ -253,6 +316,27 @@ class MovieMaster(OVOSSkill):
         # If the title can not be found, it creates an IndexError
         except IndexError:
             self.speak_dialog("no.info", {"movie": movie})
+
+    @intent_handler("movie.genre.search.intent")
+    def handle_movie_genre_search(self, message):
+        """Find movies that match a requested genre."""
+        genre = message.data.get("genre")
+        LOG.debug(f"requested movies for genre {genre}")
+        self._handle_genre_search(genre, media_type="movie")
+
+    @intent_handler("genre.movie.search.intent")
+    def handle_movie_genre_search_alt(self, message):
+        """Find movies that match a requested genre."""
+        genre = message.data.get("genre")
+        LOG.debug(f"requested movies for genre {genre}")
+        self._handle_genre_search(genre, media_type="movie")
+
+    @intent_handler("genre.tv.search.intent")
+    def handle_tv_genre_search(self, message):
+        """Find TV shows that match a requested genre."""
+        genre = message.data.get("genre")
+        LOG.debug(f"requested tv shows for genre {genre}")
+        self._handle_genre_search(genre, media_type="tv")
 
     @intent_handler("movie.runtime.intent")
     def handle_movie_length(self, message):
