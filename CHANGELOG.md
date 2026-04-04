@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.14a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a3) (2026-04-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a2...0.0.14a3)
+
+**Merged pull requests:**
+
+- ci: modernize GitHub workflows [\#57](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/57) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(i18n\): normalize locale folders to canonical BCP-47 [\#56](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/56) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.14a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a2) (2026-03-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a1...0.0.14a2)
