@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.14a4](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a4) (2026-04-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a3...0.0.14a4)
+
+**Merged pull requests:**
+
+- chore\(ovos-skill-moviemaster\): allow ovos-workshop\<9.0.0 [\#59](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/59) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.14a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a3) (2026-04-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a2...0.0.14a3)
