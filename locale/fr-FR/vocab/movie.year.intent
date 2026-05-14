@@ -1,2 +1,1 @@
-en quelle année le film {movie} est-il sorti
-quand le film {movie} est-il sorti
+(en quelle année|quand) le film {movie} est-il sorti
