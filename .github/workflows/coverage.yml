@@ -13,6 +13,6 @@ jobs:
       python_version: '3.11'
       coverage_source: 'ovos_skill_moviemaster'
       test_path: 'test/unittests'
-      install_extras: 'test'
+      test_extras: 'test'
       system_deps: 'swig libfann-dev'
       min_coverage: 0
