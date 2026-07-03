@@ -6,3 +6,4 @@ recursive-include ui *
 include *.json
 include *.txt
 include *.png
+include test/requirements.txt

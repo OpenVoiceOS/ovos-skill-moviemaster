@@ -80,6 +80,7 @@ setup(
     long_description=long_description,
     url=URL,
     install_requires=get_requirements("requirements.txt"),
+    extras_require={"test": get_requirements("test/requirements.txt")},
     author=SKILL_AUTHOR,
     description='OVOS hello world skill plugin',
     author_email='builderjer@gmail.com',
