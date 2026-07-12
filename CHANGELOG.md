@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.14a5](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a5) (2026-07-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a4...0.0.14a5)
+
+**Merged pull requests:**
+
+- fix: allow ovos-workshop 9.x [\#64](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/64) ([JarbasAl](https://github.com/JarbasAl))
+- Add MovieMaster genre search handlers [\#55](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/55) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [0.0.14a4](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a4) (2026-04-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a3...0.0.14a4)
