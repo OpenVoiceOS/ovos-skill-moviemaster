@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-skill-moviemaster"
+dynamic = ["version"]
+description = "OVOS movie information skill powered by TMDB"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "JarbasAi", email = "jarbasai@mailfence.com"}
+]
+keywords = ["ovos", "skill", "plugin"]
+dependencies = [
+    "tmdbv3api",
+    "ovos-utils>=0.0.28,<1.0.0",
+    "ovos-workshop>=8.0.0,<10.0.0",
+    "ovos-date-parser",
+    "ovos-number-parser",
+]
+
+[project.optional-dependencies]
+test = [
+    "ovoscope>=1.5.0,<2.0.0",
+    "pytest>=7.0.0,<9",
+    "pytest-timeout>=2.0.0",
+    "ovos-spec-tools>=1.4.0a1,<2.0.0",
+    "ovos-padatious>=1.8.0a1,<2.0.0",
+    "ovos-core>=2.2.4a1,<2.3.0",
+    "ovos-workshop>=8.3.0a1,<10.0.0",
+    "ovos-bus-client>=2.2.0a1,<3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/OpenVoiceOS/ovos-skill-moviemaster"
+
+[project.entry-points."ovos.plugin.skill"]
+"ovos-skill-moviemaster.openvoiceos" = "ovos_skill_moviemaster:MovieMaster"
+
+[tool.setuptools]
+packages = ["ovos_skill_moviemaster"]
+
+[tool.setuptools.package-dir]
+ovos_skill_moviemaster = ""
+
+[tool.setuptools.dynamic]
+version = {attr = "ovos_skill_moviemaster.version.__version__"}
+
+[tool.setuptools.package-data]
+ovos_skill_moviemaster = [
+    "*.json",
+    "*.png",
+    "locale/**/*",
+    "locale/*/*.voc",
+    "locale/*/*.intent",
+    "locale/*/*.dialog",
+    "locale/*/*.json",
+]
