@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.15a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.15a1) (2026-07-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a5...0.0.15a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): conform intent/dialog resources to OVOS-INTENT-2 [\#63](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/63) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.14a5](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.14a5) (2026-07-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a4...0.0.14a5)
