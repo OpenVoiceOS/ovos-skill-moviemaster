@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.15a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.15a2) (2026-08-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.15a1...0.0.15a2)
+
+**Merged pull requests:**
+
+- docs: rewrite README in Simplified Technical English [\#68](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/68) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.15a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.15a1) (2026-07-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.14a5...0.0.15a1)
