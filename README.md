@@ -1,14 +1,9 @@
 # ovos-skill-moviemaster
-OVOS skill to query IMDB about movies
 
-# <img src='PrimaryLogo_Green.png' width='50' style='vertical-align:bottom'/> Movie Master
-Find information about movies, actors and production details.
-
-## About
-
-Easily find information about a movie with your voice.
+<img src='PrimaryLogo_Green.png' width='50' style='vertical-align:bottom'/> Movie Master is an OVOS skill that finds information about movies, actors, and production details using [The Movie Database (TMDb)](https://www.themoviedb.org/).
 
 ## Examples
+
 - "What is the movie _______ about?"
 - "Tell me about the movie _______"
 - "Who plays in the movie _______?"
@@ -19,47 +14,47 @@ Easily find information about a movie with your voice.
 - "What are popular movies playing now?"
 - "What films do you recommend like _______?"
 - "How long is the movie _______?"
-- "What are the highest rated movies out?
+- "What are the highest rated movies out?"
 
 ## Installation
-Installation should be pretty much effortless.
 
-### Manual Installation
+Install the skill with pip:
 
 ```
-pip install git+https://github.com/builderjer/ovos-skill-moviemaster
+pip install git+https://github.com/OpenVoiceOS/ovos-skill-moviemaster
 ```
 
-### After Installation
+### After installation
 
-* Ask a question about a movie
-* "Hey Mycroft, tell me about the movie Monty Python and the Holy Grail"
-* Listen to the awesome response!!
+Ask a question about a movie, for example "Tell me about the movie Monty Python and the Holy Grail".
 
-If you are experiencing to much usage and the skill is returning errors you may enter your own API key
+The skill ships with a shared TMDb API key. If you hit usage limits, use your own key instead:
 
-* Signup [here](https://www.themoviedb.org/account/signup) for a FREE account
-
-* Get API key [here](https://www.themoviedb.org/settings/api)
-* You will get a v.3 key and a v.4 key
-* We will use the v.3 for this version **REMEMBER THIS, YOU WILL NEED IT**
-* Enter your new v.3 API key in your [Skill Settings File](https://openvoiceos.github.io/community-docs/082-ht_skills_config/)
+1. Sign up for a free account [at TMDb](https://www.themoviedb.org/account/signup).
+2. Get an API key [from your TMDb account settings](https://www.themoviedb.org/settings/api). TMDb issues a v3 key and a v4 key. This skill uses the v3 key.
+3. Enter the v3 key in your [skill settings file](https://openvoiceos.github.io/community-docs/082-ht_skills_config/) under `apiv3`.
 
 ## Category
+
 **Entertainment**
 
 ## Tags
+
 #TMDB
 #Movies
 #Actors
-#Mark I
 
-## ToDo
-Keep checking for more updates.
+## Related projects
+
+- [OpenVoiceOS/ovos-skill-wikipedia](https://github.com/OpenVoiceOS/ovos-skill-wikipedia) — general knowledge lookups
+- [OpenVoiceOS/ovos-skill-pokepedia](https://github.com/OpenVoiceOS/ovos-skill-pokepedia) — another info-lookup skill built the same way
 
 ## Credits
-This skill uses tmdbv3api avaliable on GitHub at [tmdbv3api](https://github.com/AnthonyBloomer/tmdbv3api.git)
 
-It also uses the TMDb API but is not endorsed or certified by TMDb.  Information avaliable at [TMDb](https://www.themoviedb.org/)
+This skill uses [tmdbv3api](https://github.com/AnthonyBloomer/tmdbv3api), a Python wrapper for the TMDb API.
 
-builderjer@github.com
+It also uses the TMDb API. This skill is not endorsed or certified by TMDb. Information is available [at TMDb](https://www.themoviedb.org/).
+
+## License
+
+Apache-2.0
