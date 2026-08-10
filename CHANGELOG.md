@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.15a2...0.1.0a1)
+
+**Merged pull requests:**
+
+- feat: add ovoscope end2end intent-routing tests [\#62](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/62) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.15a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.15a2) (2026-08-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.15a1...0.0.15a2)
