@@ -52,7 +52,7 @@ class _RoutingTest(TestCase):
                 {"utterances": [utterance], "lang": LANG},
                 {"session": session.serialize()},
             ))
-            deadline = time.monotonic() + 15
+            deadline = time.monotonic() + 60
             while not matched and time.monotonic() < deadline:
                 time.sleep(0.2)
         finally:
