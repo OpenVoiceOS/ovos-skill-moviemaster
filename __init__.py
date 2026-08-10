@@ -227,7 +227,7 @@ class MovieMaster(OVOSSkill):
             if self.active_movie:
                 if self.active_movie.release_date:
                     self.speak_dialog("movie_year", {"movie": self.active_movie.title, "year": nice_date(
-                        datetime.strptime(self.active_movie.release_date.replace("-", " "), "%Y %m %d"))})
+                        datetime.strptime(self.active_movie.release_date.replace("-", " "), "%Y %m %d"), lang=self.lang)})
                 else:
                     self.speak_dialog("movie_year_error", {
                         "movie": self.active_movie.title})

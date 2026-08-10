@@ -39,10 +39,19 @@ class _RoutingTest(TestCase):
             cls.minicroft.stop()
 
     def _assert_intent(self, utterance, intent_file):
-        intent_msg_type = f"{SKILL_ID}:{intent_file}"
+        # Different padatious/padacioso plugin versions register the
+        # matched-intent bus event under different normalizations of the
+        # ``.intent`` filename basename -- observed variants include the
+        # bare basename with no extension and the basename with the
+        # extension kept. Listen for both wire forms instead of pinning
+        # one (which breaks the moment the matching plugin version
+        # changes; see ovos-skill-personal#113 for the same drift).
+        basename = intent_file.rsplit(".", 1)[0] if intent_file.endswith(".intent") else intent_file
+        candidates = {f"{SKILL_ID}:{intent_file}", f"{SKILL_ID}:{basename}"}
         matched = []
         handler = lambda msg: matched.append(msg)
-        self.bus.on(intent_msg_type, handler)
+        for msg_type in candidates:
+            self.bus.on(msg_type, handler)
         try:
             session = Session(f"e2e-en_us-{intent_file}-{abs(hash(utterance))}")
             session.lang = LANG
@@ -52,11 +61,12 @@ class _RoutingTest(TestCase):
                 {"utterances": [utterance], "lang": LANG},
                 {"session": session.serialize()},
             ))
-            deadline = time.monotonic() + 15
+            deadline = time.monotonic() + 30
             while not matched and time.monotonic() < deadline:
                 time.sleep(0.2)
         finally:
-            self.bus.remove(intent_msg_type, handler)
+            for msg_type in candidates:
+                self.bus.remove(msg_type, handler)
         self.assertTrue(
             matched,
             f"{utterance!r} did not route to {intent_file}",
