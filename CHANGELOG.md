@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.1a1) (2026-08-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.0a3...0.1.1a1)
+
+**Merged pull requests:**
+
+- fix: remove hardcoded TMDb API key from default settings [\#75](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/75) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.0a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.0a3) (2026-08-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.0a2...0.1.0a3)
