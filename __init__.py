@@ -28,7 +28,7 @@ class MovieMaster(OVOSSkill):
 
     def initialize(self):
         DEFAULT_SETTINGS = {
-            "apiv3": self.settings.get("apiv3", "8a2e8882b465b1cf7cce9ff6b35bdd7e"),
+            "apiv3": self.settings.get("apiv3", ""),
             "search_depth": self.settings.get("search_depth", 5),
             "match_confidence": self.settings.get("match_confidence", 0.8)
         }
@@ -87,6 +87,10 @@ class MovieMaster(OVOSSkill):
         self._active_person = person_id
 
     def _search_for_movie(self, movie):
+        if not self.api_key:
+            self._active_movie = None
+            self.speak_dialog("no_valid_api", {})
+            return
         self._configure_tmdb()
         for m in Movie().search(movie):
             if fuzzy_match(m.title, movie) >= self.settings.get("match_confidence"):
@@ -95,6 +99,10 @@ class MovieMaster(OVOSSkill):
                 break
 
     def _search_for_person(self, person):
+        if not self.api_key:
+            self._active_person = None
+            self.speak_dialog("no_valid_api", {})
+            return
         self._configure_tmdb()
         for p in Person().search(person):
             if fuzzy_match(p.name, person) >= self.settings.get("match_confidence"):
@@ -110,11 +118,16 @@ class MovieMaster(OVOSSkill):
         return lang
 
     def _configure_tmdb(self):
+        if not self.api_key:
+            return
         tmdb = TMDb()
         tmdb.api_key = self.api_key
         tmdb.language = self._tmdb_language()
 
     def _match_genre(self, genre_name, media_type="movie"):
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return None
         self._configure_tmdb()
         genre_api = Genre()
         genres = genre_api.movie_list() if media_type == "movie" else genre_api.tv_list()
@@ -131,6 +144,9 @@ class MovieMaster(OVOSSkill):
         return None
 
     def _discover_by_genre(self, genre_id, media_type="movie"):
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return []
         self._configure_tmdb()
         discover = Discover()
         params = {
@@ -187,6 +203,12 @@ class MovieMaster(OVOSSkill):
 
     def verify_api(self, api_key):
         # Do a quick search to verify the api_key
+        if not api_key:
+            LOG.warning("No TMDb API key configured. Set 'apiv3' in the "
+                        "skill settings. Get a free key at "
+                        "https://www.themoviedb.org/settings/api")
+            self.speak_dialog("no_valid_api", {})
+            return None
         try:
             TMDb().api_key = api_key
             p = Movie().popular()
@@ -376,6 +398,9 @@ class MovieMaster(OVOSSkill):
 
         The list changes daily, and are not just recent movies.
         """
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return
         try:
             movies = []
             for movie in Movie().popular():
@@ -397,6 +422,9 @@ class MovieMaster(OVOSSkill):
         The list changes daily, and are not just recent movies.
         """
         LOG.debug("requested the top movies playing")
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return
         try:
             movies = Movie().top_rated()
             top_movies = []

@@ -28,11 +28,13 @@ pip install git+https://github.com/OpenVoiceOS/ovos-skill-moviemaster
 
 Ask a question about a movie, for example "Tell me about the movie Monty Python and the Holy Grail".
 
-The skill ships with a shared TMDb API key. If you hit usage limits, use your own key instead:
+This skill requires your own free TMDb API key — it does not ship with one:
 
 1. Sign up for a free account [at TMDb](https://www.themoviedb.org/account/signup).
 2. Get an API key [from your TMDb account settings](https://www.themoviedb.org/settings/api). TMDb issues a v3 key and a v4 key. This skill uses the v3 key.
 3. Enter the v3 key in your [skill settings file](https://openvoiceos.github.io/community-docs/082-ht_skills_config/) under `apiv3`.
+
+Without a configured key, the skill will speak an error instead of answering movie questions.
 
 ## Category
 
