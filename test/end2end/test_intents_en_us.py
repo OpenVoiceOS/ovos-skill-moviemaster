@@ -93,3 +93,55 @@ class TestMovieGenreSearch(_RoutingTest):
 
     def test_find_genre_movies(self):
         self._assert_intent("find action movies", "movie_genre_search.intent")
+
+
+class TestGenreTvSearch(_RoutingTest):
+    """genre_tv_search.intent"""
+
+    def test_find_genre_tv_shows(self):
+        self._assert_intent("find comedy tv shows", "genre_tv_search.intent")
+
+    def test_list_genre_television_shows(self):
+        self._assert_intent(
+            "list horror television shows", "genre_tv_search.intent")
+
+    def test_get_genre_shows(self):
+        self._assert_intent("get action shows", "genre_tv_search.intent")
+
+    def test_movie_genre_search_sibling_not_claimed(self):
+        # "movies" (not "tv shows") is the movie_genre_search.intent sample
+        # set -- genre_tv_search.intent must not steal it. Listen for both
+        # siblings so a genuine (correct) match on movie_genre_search.intent
+        # lets the test exit early instead of idling the full timeout.
+        tv_candidates = {
+            f"{SKILL_ID}:genre_tv_search.intent", f"{SKILL_ID}:genre_tv_search"}
+        movie_candidates = {
+            f"{SKILL_ID}:movie_genre_search.intent",
+            f"{SKILL_ID}:movie_genre_search",
+        }
+        all_candidates = tv_candidates | movie_candidates
+        matched = []
+        handler = lambda msg: matched.append(msg)
+        for msg_type in all_candidates:
+            self.bus.on(msg_type, handler)
+        try:
+            session = Session("e2e-en_us-genre_tv_search-sibling-negative")
+            session.lang = LANG
+            session.pipeline = PIPELINE
+            self.bus.emit(Message(
+                "recognizer_loop:utterance",
+                {"utterances": ["find comedy movies"], "lang": LANG},
+                {"session": session.serialize()},
+            ))
+            deadline = time.monotonic() + 30
+            while not matched and time.monotonic() < deadline:
+                time.sleep(0.2)
+        finally:
+            for msg_type in all_candidates:
+                self.bus.remove(msg_type, handler)
+        claimed_by_tv = [m for m in matched if m.msg_type in tv_candidates]
+        self.assertFalse(
+            claimed_by_tv,
+            "'find comedy movies' (movie_genre_search.intent) was "
+            "incorrectly claimed by genre_tv_search.intent",
+        )
