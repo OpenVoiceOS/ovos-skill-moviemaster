@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.1a2) (2026-09-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.1a1...0.1.1a2)
+
+**Merged pull requests:**
+
+- test: add e2e coverage for genre\_tv\_search.intent [\#77](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/77) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.1a1) (2026-08-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.0a3...0.1.1a1)
