@@ -7,7 +7,7 @@ from ovos_utils.parse import fuzzy_match
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
-from tmdbv3api import TMDb, Movie, Person
+from tmdbv3api import TMDb, Movie, Person, Genre, Discover
 
 
 class MovieMaster(OVOSSkill):
@@ -28,7 +28,7 @@ class MovieMaster(OVOSSkill):
 
     def initialize(self):
         DEFAULT_SETTINGS = {
-            "apiv3": self.settings.get("apiv3", "8a2e8882b465b1cf7cce9ff6b35bdd7e"),
+            "apiv3": self.settings.get("apiv3", ""),
             "search_depth": self.settings.get("search_depth", 5),
             "match_confidence": self.settings.get("match_confidence", 0.8)
         }
@@ -42,7 +42,7 @@ class MovieMaster(OVOSSkill):
         self._active_person = None
 
         self.settings_change_callback = self.on_settings_changed
-        TMDb().api_key = self.api_key
+        self._configure_tmdb()
 
     @property
     def api_key(self):
@@ -87,6 +87,11 @@ class MovieMaster(OVOSSkill):
         self._active_person = person_id
 
     def _search_for_movie(self, movie):
+        if not self.api_key:
+            self._active_movie = None
+            self.speak_dialog("no_valid_api", {})
+            return
+        self._configure_tmdb()
         for m in Movie().search(movie):
             if fuzzy_match(m.title, movie) >= self.settings.get("match_confidence"):
                 self.active_movie = m
@@ -94,11 +99,84 @@ class MovieMaster(OVOSSkill):
                 break
 
     def _search_for_person(self, person):
+        if not self.api_key:
+            self._active_person = None
+            self.speak_dialog("no_valid_api", {})
+            return
+        self._configure_tmdb()
         for p in Person().search(person):
             if fuzzy_match(p.name, person) >= self.settings.get("match_confidence"):
                 self.active_person = p
                 LOG.debug(f"active person: {self.active_person}")
                 break
+
+    def _tmdb_language(self):
+        lang = (self.lang or "en-us").replace("_", "-")
+        if "-" in lang:
+            base, region = lang.split("-", 1)
+            return f"{base}-{region.upper()}"
+        return lang
+
+    def _configure_tmdb(self):
+        if not self.api_key:
+            return
+        tmdb = TMDb()
+        tmdb.api_key = self.api_key
+        tmdb.language = self._tmdb_language()
+
+    def _match_genre(self, genre_name, media_type="movie"):
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return None
+        self._configure_tmdb()
+        genre_api = Genre()
+        genres = genre_api.movie_list() if media_type == "movie" else genre_api.tv_list()
+        genre_name = (genre_name or "").strip()
+        best_match = None
+        best_score = 0.0
+        for genre in genres:
+            score = fuzzy_match(genre.name.lower(), genre_name.lower())
+            if score > best_score:
+                best_score = score
+                best_match = genre
+        if best_match and best_score >= self.match_confidence:
+            return best_match
+        return None
+
+    def _discover_by_genre(self, genre_id, media_type="movie"):
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return []
+        self._configure_tmdb()
+        discover = Discover()
+        params = {
+            "with_genres": genre_id,
+            "sort_by": "popularity.desc"
+        }
+        if media_type == "tv":
+            return discover.discover_tv_shows(params)
+        return discover.discover_movies(params)
+
+    def _handle_genre_search(self, genre_name, media_type="movie"):
+        matched_genre = self._match_genre(genre_name, media_type)
+        if not matched_genre:
+            self.speak_dialog("no_info_general")
+            return
+
+        results = []
+        for result in self._discover_by_genre(matched_genre.id, media_type):
+            results.append(result)
+            if len(results) >= self.search_depth:
+                break
+
+        if not results:
+            self.speak_dialog("no_info_general")
+            return
+
+        result_list, last_result = self._create_dialog_list(results)
+        dialog = "genre_movie_search" if media_type == "movie" else "genre_tv_search"
+        self.speak_dialog(dialog, {"genre": matched_genre.name})
+        self.speak(f"{result_list}{last_result}")
 
     def _create_dialog_list(self, dialog_list):
         # create a list
@@ -120,19 +198,26 @@ class MovieMaster(OVOSSkill):
             "search_depth", self.search_depth)
         self.match_confidence = self.settings.get(
             "match_confidence", self.match_confidence)
+        self._configure_tmdb()
         LOG.debug(f"settings changed to {self.settings}")
 
     def verify_api(self, api_key):
         # Do a quick search to verify the api_key
+        if not api_key:
+            LOG.warning("No TMDb API key configured. Set 'apiv3' in the "
+                        "skill settings. Get a free key at "
+                        "https://www.themoviedb.org/settings/api")
+            self.speak_dialog("no_valid_api", {})
+            return None
         try:
             TMDb().api_key = api_key
             p = Movie().popular()
             return api_key
         except Exception:
-            self.speak_dialog("no.valid.api", {})
-            # self.speak_dialog("fallback.api", {})
+            self.speak_dialog("no_valid_api", {})
+            # self.speak_dialog("fallback_api", {})
 
-    @intent_handler("movie.description.intent")
+    @intent_handler("movie_description.intent")
     def handle_movie_description_intent(self, message):
         """ Gets the long version of the requested movie."""
         movie = message.data.get("movie")
@@ -141,20 +226,20 @@ class MovieMaster(OVOSSkill):
         try:
             if self.active_movie:
                 if self.active_movie.overview is not "":
-                    self.speak_dialog("movie.description", {"movie": movie})
+                    self.speak_dialog("movie_description", {"movie": movie})
                     for sentence in self.active_movie.overview.split(". "):
                         self.speak(sentence)
                 else:
                     self.speak_dialog(
-                        "movie.description.error", {"movie": movie})
+                        "movie_description_error", {"movie": movie})
             else:
-                self.speak_dialog("no.info", {"movie": movie})
+                self.speak_dialog("no_info", {"movie": movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.year.intent")
+    @intent_handler("movie_year.intent")
     def handle_movie_year(self, message):
         """ Gets the year the movie was released."""
         movie = message.data.get("movie")
@@ -163,17 +248,17 @@ class MovieMaster(OVOSSkill):
         try:
             if self.active_movie:
                 if self.active_movie.release_date:
-                    self.speak_dialog("movie.year", {"movie": self.active_movie.title, "year": nice_date(
-                        datetime.strptime(self.active_movie.release_date.replace("-", " "), "%Y %m %d"))})
+                    self.speak_dialog("movie_year", {"movie": self.active_movie.title, "year": nice_date(
+                        datetime.strptime(self.active_movie.release_date.replace("-", " "), "%Y %m %d"), lang=self.lang)})
                 else:
-                    self.speak_dialog("movie.year.error", {
+                    self.speak_dialog("movie_year_error", {
                         "movie": self.active_movie.title})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.cast.intent")
+    @intent_handler("movie_cast.intent")
     def handle_movie_cast(self, message):
         """ Gets the cast of the requested movie."""
         movie = message.data.get("movie")
@@ -192,15 +277,15 @@ class MovieMaster(OVOSSkill):
                 LOG.debug(f"{self.active_movie} cast: {cast}")
             # Create a list to store the cast to be included in the dialog
             actor_list, last_actor = self._create_dialog_list(cast)
-            self.speak_dialog("movie.cast", {
+            self.speak_dialog("movie_cast", {
                 "movie": movie, "actorlist": actor_list, "lastactor": last_actor})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
     # TODO: Need to find this again. New API results don't return the same as before
-    # @intent_handler("movie.production.intent")
+    # @intent_handler("movie_production.intent")
     # def handle_movie_production(self, message):
     #     """ Gets the production companies that made the movie.
     #
@@ -217,20 +302,20 @@ class MovieMaster(OVOSSkill):
     #
     #         # If there is only one production company, say the dialog differently
     #         if len(companyList) == 1:
-    #             self.speak_dialog("movie.production.single", {"movie": movie, "company": companyList[0]["name"]})
+    #             self.speak_dialog("movie_production_single", {"movie": movie, "company": companyList[0]["name"]})
     #         # If there is more, get the last in the list and set up the dialog
     #         if len(companyList) > 1:
     #             companies = ""
     #             lastCompany = companyList.pop()["name"]
     #             for company in companyList:
     #                 companies = companies + company["name"] + ", "
-    #             self.speak_dialog("movie.production.multiple", {"companies": companies, "movie": movie, "lastcompany": lastCompany})
+    #             self.speak_dialog("movie_production_multiple", {"companies": companies, "movie": movie, "lastcompany": lastCompany})
     #
     #     # If the title can not be found, it creates an IndexError
     #     except IndexError:
-    #         self.speak_dialog("no.info", {"movie": movie})
+    #         self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.genres.intent")
+    @intent_handler("movie_genres.intent")
     def handle_movie_genre(self, message):
         """ Gets the genres the movie belongs to."""
         movie = message.data.get("movie")
@@ -245,16 +330,30 @@ class MovieMaster(OVOSSkill):
                         break
                 if len(genres) > 1:
                     genre_list, last_genre = self._create_dialog_list(genres)
-                    self.speak_dialog("movie.genre.multiple", {
+                    self.speak_dialog("movie_genre_multiple", {
                         "genrelist": genre_list, "genrelistlast": last_genre})
                 else:
-                    self.speak_dialog("movie.genre.single", {
+                    self.speak_dialog("movie_genre_single", {
                         "movie": movie, "genre": genres[0].name})
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.runtime.intent")
+    @intent_handler("movie_genre_search.intent")
+    def handle_movie_genre_search(self, message):
+        """Find movies that match a requested genre."""
+        genre = message.data.get("genre")
+        LOG.debug(f"requested movies for genre {genre}")
+        self._handle_genre_search(genre, media_type="movie")
+
+    @intent_handler("genre_tv_search.intent")
+    def handle_tv_genre_search(self, message):
+        """Find TV shows that match a requested genre."""
+        genre = message.data.get("genre")
+        LOG.debug(f"requested tv shows for genre {genre}")
+        self._handle_genre_search(genre, media_type="tv")
+
+    @intent_handler("movie_runtime.intent")
     def handle_movie_length(self, message):
         """ Gets the runtime of the searched movie."""
         movie = message.data.get("movie")
@@ -263,14 +362,14 @@ class MovieMaster(OVOSSkill):
         try:
             if self.active_movie:
                 movie_runtime = Movie().details(self.active_movie.id).runtime
-                self.speak_dialog("movie.runtime", {
+                self.speak_dialog("movie_runtime", {
                     "movie": movie, "runtime": movie_runtime})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.recommendations.intent")
+    @intent_handler("movie_recommendations.intent")
     def handle_movie_recommendations(self, message):
         """ Gets the top movies that are similar to the suggested movie."""
         movie = message.data.get("movie")
@@ -286,19 +385,22 @@ class MovieMaster(OVOSSkill):
                 movie_list, last_movie = self._create_dialog_list(
                     recommendation_list)
 
-            self.speak_dialog("movie.recommendations", {
+            self.speak_dialog("movie_recommendations", {
                 "movielist": movie_list, "lastmovie": last_movie, "movie": movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.popular.intent")
+    @intent_handler("movie_popular.intent")
     def handle_popular_movies(self, message):
         """ Gets the daily popular movies.
 
         The list changes daily, and are not just recent movies.
         """
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return
         try:
             movies = []
             for movie in Movie().popular():
@@ -307,19 +409,22 @@ class MovieMaster(OVOSSkill):
                     break
             # Lets see...I think we will set up the dialog again.
             popular_movies, last_movie = self._create_dialog_list(movies)
-            self.speak_dialog("movie.popular", {
+            self.speak_dialog("movie_popular", {
                 "popularlist": popular_movies, "lastmovie": last_movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info", {"movie": movie})
+            self.speak_dialog("no_info", {"movie": movie})
 
-    @intent_handler("movie.top.intent")
+    @intent_handler("movie_top.intent")
     def handle_top_movies(self, message):
         """ Gets the top rated movies of the day.
         The list changes daily, and are not just recent movies.
         """
         LOG.debug("requested the top movies playing")
+        if not self.api_key:
+            self.speak_dialog("no_valid_api", {})
+            return
         try:
             movies = Movie().top_rated()
             top_movies = []
@@ -329,8 +434,8 @@ class MovieMaster(OVOSSkill):
                     break
             movie_list, last_movie = self._create_dialog_list(top_movies)
             self.speak_dialog(
-                "movie.top", {"toplist": movie_list, "lastmovie": last_movie})
+                "movie_top", {"toplist": movie_list, "lastmovie": last_movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no.info.general")
+            self.speak_dialog("no_info_general")
