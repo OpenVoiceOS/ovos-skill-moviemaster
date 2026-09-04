@@ -1,2 +1,4 @@
 (list|find) (movies|films|flicks) that are [a] {genre}
 (list|find) {genre} (movies|films|flicks)
+show (|me|us) (|some) {genre} (movies|films|flicks)
+what (movies|films|flicks) are {genre}

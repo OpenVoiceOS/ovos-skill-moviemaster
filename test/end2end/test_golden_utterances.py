@@ -13,8 +13,14 @@ message, which fires before the handler runs (see
 ``test_intents_en_us.py``, whose pattern this suite follows), so the suite
 stays deterministic and offline.
 
-All 40 golden rows route correctly against the current en-US intent files;
-no locale/vocab changes were needed.
+All golden rows route correctly against the current en-US intent files. A
+handful of the added natural phrasings exposed real template gaps and
+sibling-intent collisions (movie_cast vs. movie_genre_search, movie_year's
+"come out"/"release" wording, movie_recommendations' singular "a movie"
+form, movie_top's "best"/"give me" wording, movie_popular vs.
+movie_genre_search's open ``{genre}`` slot); the sibling ``.intent`` files
+and their ``.blacklist`` suppression files were updated alongside this
+suite so the fixes are exercised, not just documented.
 """
 import json
 import time
@@ -50,6 +56,10 @@ NEGATIVE_UTTERANCES = [
     ("search word net for word", "ovos-skill-wordnet.openvoiceos"),
     ("which lists are stored", "ovos-skill-alerts.openvoiceos"),
     ("create a shopping list", "ovos-skill-alerts.openvoiceos"),
+    ("describe the weather today", "ovos-skill-weather.openvoiceos"),
+    ("what should i watch out for driving today", "ovos-skill-weather.openvoiceos"),
+    ("what year is it", "ovos-date-time-skill.openvoiceos"),
+    ("show me the news", "ovos-skill-news.openvoiceos"),
 ]
 
 
