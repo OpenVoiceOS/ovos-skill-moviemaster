@@ -284,37 +284,6 @@ class MovieMaster(OVOSSkill):
         except IndexError:
             self.speak_dialog("no_info", {"movie": movie})
 
-    # TODO: Need to find this again. New API results don't return the same as before
-    # @intent_handler("movie_production.intent")
-    # def handle_movie_production(self, message):
-    #     """ Gets the production companies that made the movie.
-    #
-    #     The search_depth setting is avaliable at home.mycroft.ai
-    #     """
-    #     movie = message.data.get("movie")
-    #     LOG.debug(f"requested production for movie {movie}")
-    #     self._search_for_movie(movie)
-    #     try:
-    #         if self.active_movie and self.active_movie.id:
-    #
-    #         movie_details = Movie().details(Movie().search(movie)[:1][0].id)
-    #         companyList = movie_details.production_companies[:self.searchDepth]
-    #
-    #         # If there is only one production company, say the dialog differently
-    #         if len(companyList) == 1:
-    #             self.speak_dialog("movie_production_single", {"movie": movie, "company": companyList[0]["name"]})
-    #         # If there is more, get the last in the list and set up the dialog
-    #         if len(companyList) > 1:
-    #             companies = ""
-    #             lastCompany = companyList.pop()["name"]
-    #             for company in companyList:
-    #                 companies = companies + company["name"] + ", "
-    #             self.speak_dialog("movie_production_multiple", {"companies": companies, "movie": movie, "lastcompany": lastCompany})
-    #
-    #     # If the title can not be found, it creates an IndexError
-    #     except IndexError:
-    #         self.speak_dialog("no_info", {"movie": movie})
-
     @intent_handler("movie_genres.intent")
     def handle_movie_genre(self, message):
         """ Gets the genres the movie belongs to."""
