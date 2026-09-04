@@ -1,1 +1,2 @@
-who (acts|plays|is) in the (movie|film|flick) {movie}
+who (acts|plays|is|stars) in the (movie|film|flick) {movie}
+(list|get|show|name) (|me|us) the cast of the (movie|film|flick) {movie}

@@ -1,3 +1,5 @@
 (list|get) (|good) (movies|films|flicks) (similar to|like) {movie}
 recommend (movies|films|flicks) (similar to|like) {movie}
 what (movies|films|flicks) (would|do) you recommend (similar to|like) {movie}
+recommend a (movie|film|flick) (similar to|like) {movie}
+what should (i|we) watch if (i|we) liked {movie}

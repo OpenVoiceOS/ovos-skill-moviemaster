@@ -95,6 +95,131 @@ class TestMovieGenreSearch(_RoutingTest):
         self._assert_intent("find action movies", "movie_genre_search.intent")
 
 
+class TestMovieCastSiblingConfusion(_RoutingTest):
+    """movie_cast.intent must not lose ground to movie_genre_search.intent.
+
+    "list the cast of the movie X" and "list {genre} movies" share the
+    (list|find|...) verb group -- movie_cast.intent's dedicated cast-listing
+    line must win.
+    """
+
+    def _assert_not_claimed_by(self, utterance, wrong_intent_file):
+        right_candidates = {
+            f"{SKILL_ID}:movie_cast.intent", f"{SKILL_ID}:movie_cast"}
+        wrong_basename = wrong_intent_file.rsplit(".", 1)[0]
+        wrong_candidates = {
+            f"{SKILL_ID}:{wrong_intent_file}", f"{SKILL_ID}:{wrong_basename}"}
+        all_candidates = right_candidates | wrong_candidates
+        matched = []
+        handler = lambda msg: matched.append(msg)
+        for msg_type in all_candidates:
+            self.bus.on(msg_type, handler)
+        try:
+            session = Session(f"e2e-en_us-cast-sibling-{abs(hash(utterance))}")
+            session.lang = LANG
+            session.pipeline = PIPELINE
+            self.bus.emit(Message(
+                "recognizer_loop:utterance",
+                {"utterances": [utterance], "lang": LANG},
+                {"session": session.serialize()},
+            ))
+            deadline = time.monotonic() + 30
+            while not matched and time.monotonic() < deadline:
+                time.sleep(0.2)
+        finally:
+            for msg_type in all_candidates:
+                self.bus.remove(msg_type, handler)
+        claimed_wrong = [m for m in matched if m.msg_type in wrong_candidates]
+        self.assertFalse(
+            claimed_wrong,
+            f"{utterance!r} (movie_cast.intent) was incorrectly claimed by "
+            f"{wrong_intent_file}",
+        )
+
+    def test_list_the_cast_not_claimed_by_genre_search(self):
+        self._assert_not_claimed_by(
+            "list the cast of the movie Titanic", "movie_genre_search.intent")
+
+
+class TestMovieDescriptionSiblingConfusion(_RoutingTest):
+    """movie_description.intent must not steal recommendation requests."""
+
+    def test_recommend_a_movie_not_claimed_by_description(self):
+        description_candidates = {
+            f"{SKILL_ID}:movie_description.intent", f"{SKILL_ID}:movie_description"}
+        recommend_candidates = {
+            f"{SKILL_ID}:movie_recommendations.intent",
+            f"{SKILL_ID}:movie_recommendations",
+        }
+        all_candidates = description_candidates | recommend_candidates
+        matched = []
+        handler = lambda msg: matched.append(msg)
+        for msg_type in all_candidates:
+            self.bus.on(msg_type, handler)
+        try:
+            session = Session("e2e-en_us-description-sibling-negative")
+            session.lang = LANG
+            session.pipeline = PIPELINE
+            self.bus.emit(Message(
+                "recognizer_loop:utterance",
+                {"utterances": ["recommend a movie like Inception"], "lang": LANG},
+                {"session": session.serialize()},
+            ))
+            deadline = time.monotonic() + 30
+            while not matched and time.monotonic() < deadline:
+                time.sleep(0.2)
+        finally:
+            for msg_type in all_candidates:
+                self.bus.remove(msg_type, handler)
+        claimed_by_description = [
+            m for m in matched if m.msg_type in description_candidates]
+        self.assertFalse(
+            claimed_by_description,
+            "'recommend a movie like Inception' (movie_recommendations.intent) "
+            "was incorrectly claimed by movie_description.intent",
+        )
+
+
+class TestMoviePopularSiblingConfusion(_RoutingTest):
+    """movie_popular.intent must not lose "show ... popular movies" to
+    movie_genre_search.intent's open {genre} slot."""
+
+    def test_show_me_popular_movies_not_claimed_by_genre_search(self):
+        popular_candidates = {
+            f"{SKILL_ID}:movie_popular.intent", f"{SKILL_ID}:movie_popular"}
+        genre_search_candidates = {
+            f"{SKILL_ID}:movie_genre_search.intent",
+            f"{SKILL_ID}:movie_genre_search",
+        }
+        all_candidates = popular_candidates | genre_search_candidates
+        matched = []
+        handler = lambda msg: matched.append(msg)
+        for msg_type in all_candidates:
+            self.bus.on(msg_type, handler)
+        try:
+            session = Session("e2e-en_us-popular-sibling-negative")
+            session.lang = LANG
+            session.pipeline = PIPELINE
+            self.bus.emit(Message(
+                "recognizer_loop:utterance",
+                {"utterances": ["show me popular movies"], "lang": LANG},
+                {"session": session.serialize()},
+            ))
+            deadline = time.monotonic() + 30
+            while not matched and time.monotonic() < deadline:
+                time.sleep(0.2)
+        finally:
+            for msg_type in all_candidates:
+                self.bus.remove(msg_type, handler)
+        claimed_by_genre_search = [
+            m for m in matched if m.msg_type in genre_search_candidates]
+        self.assertFalse(
+            claimed_by_genre_search,
+            "'show me popular movies' (movie_popular.intent) was incorrectly "
+            "claimed by movie_genre_search.intent",
+        )
+
+
 class TestGenreTvSearch(_RoutingTest):
     """genre_tv_search.intent"""
 
