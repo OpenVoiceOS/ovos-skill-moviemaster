@@ -94,6 +94,18 @@ class TestMovieGenreSearch(_RoutingTest):
     def test_find_genre_movies(self):
         self._assert_intent("find action movies", "movie_genre_search.intent")
 
+    def test_show_me_genre_movies_ood_phrasing(self):
+        self._assert_intent(
+            "show me some thriller movies", "movie_genre_search.intent")
+
+    def test_suggest_genre_movie_ood_phrasing(self):
+        self._assert_intent(
+            "suggest a fantasy movie", "movie_genre_search.intent")
+
+    def test_suggest_genre_movies_ood_phrasing(self):
+        self._assert_intent(
+            "suggest sci-fi movies", "movie_genre_search.intent")
+
 
 class TestGenreTvSearch(_RoutingTest):
     """genre_tv_search.intent"""
@@ -107,6 +119,14 @@ class TestGenreTvSearch(_RoutingTest):
 
     def test_get_genre_shows(self):
         self._assert_intent("get action shows", "genre_tv_search.intent")
+
+    def test_i_want_to_watch_genre_ood_phrasing(self):
+        self._assert_intent(
+            "i want to watch a documentary", "genre_tv_search.intent")
+
+    def test_show_me_genre_shows_ood_phrasing(self):
+        self._assert_intent(
+            "show me some drama series", "genre_tv_search.intent")
 
     def test_movie_genre_search_sibling_not_claimed(self):
         # "movies" (not "tv shows") is the movie_genre_search.intent sample
@@ -144,4 +164,47 @@ class TestGenreTvSearch(_RoutingTest):
             claimed_by_tv,
             "'find comedy movies' (movie_genre_search.intent) was "
             "incorrectly claimed by genre_tv_search.intent",
+        )
+
+
+class TestMovieRecommendationsSiblingNotClaimed(_RoutingTest):
+    """"recommend" utterances must stay with movie_recommendations.intent
+    and not be pulled into movie_genre_search.intent."""
+
+    def test_recommend_similar_movies_not_claimed_by_genre_search(self):
+        genre_candidates = {
+            f"{SKILL_ID}:movie_genre_search.intent",
+            f"{SKILL_ID}:movie_genre_search",
+        }
+        recommendation_candidates = {
+            f"{SKILL_ID}:movie_recommendations.intent",
+            f"{SKILL_ID}:movie_recommendations",
+        }
+        all_candidates = genre_candidates | recommendation_candidates
+        matched = []
+        handler = lambda msg: matched.append(msg)
+        for msg_type in all_candidates:
+            self.bus.on(msg_type, handler)
+        try:
+            session = Session("e2e-en_us-movie_recommendations-sibling-negative")
+            session.lang = LANG
+            session.pipeline = PIPELINE
+            self.bus.emit(Message(
+                "recognizer_loop:utterance",
+                {"utterances": ["recommend movies like inception"], "lang": LANG},
+                {"session": session.serialize()},
+            ))
+            deadline = time.monotonic() + 30
+            while not matched and time.monotonic() < deadline:
+                time.sleep(0.2)
+        finally:
+            for msg_type in all_candidates:
+                self.bus.remove(msg_type, handler)
+        claimed_by_genre_search = [
+            m for m in matched if m.msg_type in genre_candidates]
+        self.assertFalse(
+            claimed_by_genre_search,
+            "'recommend movies like inception' "
+            "(movie_recommendations.intent) was incorrectly claimed by "
+            "movie_genre_search.intent",
         )
