@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Movie Master",
+  "description": "Trouvez des informations sur les films, les acteurs et la production. Demandez un synopsis, la distribution, la durée ou l'année de sortie à la voix.",
+  "examples": [
+    "De quoi parle le film _______ ?",
+    "Raconte-moi le film _______.",
+    "Qui joue dans le film _______ ?",
+    "À quels genres appartient le film _______ ?",
+    "Donne-moi des informations sur le film _______.",
+    "Quand le film _______ est-il sorti ?",
+    "As-tu des informations sur le film _______ ?",
+    "Quels sont les films populaires du moment ?",
+    "Quels films recommandes-tu comme _______ ?",
+    "Combien de temps dure le film _______ ?",
+    "Quels sont les films les mieux notés du moment ?"
+  ],
+  "tags": [
+    "TMDB",
+    "films",
+    "acteurs",
+    "divertissement"
+  ]
+}
