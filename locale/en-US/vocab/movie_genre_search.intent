@@ -1,2 +1,4 @@
 (list|find) (movies|films|flicks) that are [a] {genre}
 (list|find) {genre} (movies|films|flicks)
+(show|suggest|get) [me] [a|some] {genre} (movies|films|flicks)
+i want to watch [a|some] {genre} (movie|movies|film|films|flicks)
