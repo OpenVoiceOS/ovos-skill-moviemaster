@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.3a2) (2026-09-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.3a1...0.1.3a2)
+
+**Merged pull requests:**
+
+- Drop dead movie\_production/movie\_information intents [\#79](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/79) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.3a1) (2026-09-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.2a3...0.1.3a1)
