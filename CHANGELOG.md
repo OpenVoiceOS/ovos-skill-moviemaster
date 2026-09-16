@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.3a1) (2026-09-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.2a3...0.1.3a1)
+
+**Merged pull requests:**
+
+- fix: constrain {genre} slot with genre.entity, broaden trigger phrasing [\#81](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/81) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.2a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.1.2a3) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.1.2a2...0.1.2a3)
