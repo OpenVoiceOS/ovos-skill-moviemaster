@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.3.0a2) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.3.0a1...0.3.0a2)
+
+**Merged pull requests:**
+
+- test: golden utterances for every locale [\#94](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/94) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.3.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.3.0a1) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.2.1a1...0.3.0a1)
