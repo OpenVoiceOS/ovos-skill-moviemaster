@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.3.0a1) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.2.1a1...0.3.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill genre.entity for ca-ES, de-DE, es-ES, eu-ES and gl-ES against en-US [\#99](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/99) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.2.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.2.1a1) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.2.0a1...0.2.1a1)
