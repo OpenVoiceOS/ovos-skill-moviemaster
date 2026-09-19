@@ -1,3 +1,6 @@
 Get the (runtime|length) of the (movie|film|flick) {movie}
 How long is the (movie|film|flick) {movie}
 What is the (runtime|length) of the (movie|film|flick) {movie}
+What's the (runtime|length) of the (movie|film|flick) {movie}
+How many (minutes|hours) is the (movie|film|flick) {movie}
+How many (minutes|hours) (long|) is the (movie|film|flick) {movie}
