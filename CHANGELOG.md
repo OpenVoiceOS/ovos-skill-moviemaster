@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.4.0a1) (2026-09-23)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.3.0a3...0.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill pt-BR gap against en-US [\#93](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/93) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.3.0a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.3.0a3) (2026-09-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.3.0a2...0.3.0a3)
