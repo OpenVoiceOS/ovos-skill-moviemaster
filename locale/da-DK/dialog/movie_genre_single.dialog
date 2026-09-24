@@ -1,2 +1,2 @@
-(filmen | filmen) {movie} kunne være en {genre}
+filmen {movie} kunne være en {genre}
 Du kan finde filmen {movie} under sektionen {genre}
