@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.1a1) (2026-09-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.0a1...0.5.1a1)
+
+**Merged pull requests:**
+
+- fix\(da-DK\): English words inside Danish sentences, removed not translated [\#109](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/109) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.0a1) (2026-09-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.4.0a3...0.5.0a1)
