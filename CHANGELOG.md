@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.0a1) (2026-09-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.4.0a3...0.5.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): sibling-word blacklists for the ten locales that lacked them [\#107](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/107) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.4.0a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.4.0a3) (2026-09-23)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.4.0a2...0.4.0a3)
