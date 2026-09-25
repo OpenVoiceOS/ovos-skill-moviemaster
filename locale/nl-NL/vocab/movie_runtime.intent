@@ -1,0 +1,7 @@
+# machine translation from en-US, unvouched
+Geef de (speelduur|lengte) van de (film|rolprent|prent) {movie}
+Hoe lang is de (film|rolprent|prent) {movie}
+Wat is de (speelduur|lengte) van de (film|rolprent|prent) {movie}
+Hoeveel bedraagt de (speelduur|lengte) van de (film|rolprent|prent) {movie}
+Hoeveel (minuten|uur) is de (film|rolprent|prent) {movie}
+Hoeveel (minuten|uur) (lang|) is de (film|rolprent|prent) {movie}
