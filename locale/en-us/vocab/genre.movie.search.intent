@@ -1,2 +1,0 @@
-(list|find) (movies|films) that are (a| ) {genre}
-(list|find) {genre} (movies|films)
