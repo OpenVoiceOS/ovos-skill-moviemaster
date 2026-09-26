@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.3a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.3a1) (2026-09-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.2a4...0.5.3a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): two en-US store examples the skill cannot hear [\#119](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/119) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.5.2a4](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.2a4) (2026-09-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.2a3...0.5.2a4)
@@ -475,10 +483,6 @@
 ## [0.0.5a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.5a1) (2024-11-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.4a2...0.0.5a1)
-
-**Merged pull requests:**
-
-- fix: requirements.txt [\#16](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/16) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.4a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.4a2) (2024-11-04)
 
