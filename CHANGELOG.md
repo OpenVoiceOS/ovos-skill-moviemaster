@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.6.0a1) (2026-09-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.3a2...0.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fr-FR movie\_popular and movie\_top get lines the gold does not repeat [\#113](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/113) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.5.3a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.3a2) (2026-09-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.3a1...0.5.3a2)
@@ -456,10 +464,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.6...0.0.7a1)
 
-**Merged pull requests:**
-
-- fix: requirements.txt [\#20](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/20) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.0.6](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.6) (2024-11-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/V0.0.6...0.0.6)
@@ -467,10 +471,6 @@
 ## [V0.0.6](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.6) (2024-11-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.6a1...V0.0.6)
-
-**Merged pull requests:**
-
-- Release 0.0.6a1 [\#19](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/19) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.6a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.6a1) (2024-11-15)
 
