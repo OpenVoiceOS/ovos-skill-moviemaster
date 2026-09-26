@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.2a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.2a2) (2026-09-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.2a1...0.5.2a2)
+
+**Merged pull requests:**
+
+- locale: pt-PT and nl-NL parity \(machine translation, unvouched\) [\#114](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.5.2a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.5.2a1) (2026-09-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.1a1...0.5.2a1)
@@ -484,7 +492,6 @@
 **Merged pull requests:**
 
 - fix:long description [\#11](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/11) ([JarbasAl](https://github.com/JarbasAl))
-- fix:update\_requirements [\#10](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/10) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.1) (2024-09-03)
 
@@ -497,10 +504,6 @@
 ## [V0.0.1a4](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.1a4) (2024-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/V0.0.1a3...V0.0.1a4)
-
-**Merged pull requests:**
-
-- feat: fix tests and workflows? [\#9](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/9) ([builderjer](https://github.com/builderjer))
 
 ## [V0.0.1a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.1a3) (2024-02-10)
 
