@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a3) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.1a2...0.7.1a3)
+
+**Merged pull requests:**
+
+- locale: skill.json for the drafted locales, from their own intent lines [\#133](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/133) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.1a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a2) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.1a1...0.7.1a2)
@@ -415,8 +423,6 @@
 **Merged pull requests:**
 
 - Add Catalan translation [\#31](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/31) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- Add Catalan translation [\#30](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/30) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- adjusting German translation from joergz2 [\#29](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/29) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.0.8](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8) (2025-02-27)
 
