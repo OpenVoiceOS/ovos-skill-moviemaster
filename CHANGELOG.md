@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.0a1) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.6.0a1...0.7.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): draft es-CO from es-ES \(copy, unvouched\) [\#125](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/125) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.6.0a1) (2026-09-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.5.3a2...0.6.0a1)
@@ -446,7 +454,6 @@
 **Merged pull requests:**
 
 - Release 0.0.8a1 [\#23](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/23) ([github-actions[bot]](https://github.com/apps/github-actions))
-- da-dk/translate [\#22](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/22) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [V0.0.7](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.7) (2024-11-20)
 
@@ -455,10 +462,6 @@
 ## [0.0.7](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.7) (2024-11-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.7a1...0.0.7)
-
-**Merged pull requests:**
-
-- Release 0.0.7a1 [\#21](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/21) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.7a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.7a1) (2024-11-20)
 
