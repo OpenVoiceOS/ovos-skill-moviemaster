@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "получить описание фильма Stripes", "lang": "ru-RU", "intent_label": "movie_description.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "Список фильмов, которые комедия", "lang": "ru-RU", "intent_label": "movie_genre_search.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "которые играют в фильме Stripes", "lang": "ru-RU", "intent_label": "movie_cast.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
