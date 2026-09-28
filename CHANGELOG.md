@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a2) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.1a1...0.7.1a2)
+
+**Merged pull requests:**
+
+- test: multilang runner reads its locales from the golden files on disk [\#129](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/129) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a1) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.0a2...0.7.1a1)
@@ -447,11 +455,6 @@
 ## [0.0.8a4](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a4) (2024-12-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a2...0.0.8a4)
-
-**Merged pull requests:**
-
-- Release 0.0.8a4 [\#28](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/28) ([github-actions[bot]](https://github.com/apps/github-actions))
-- import basque translations [\#27](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/27) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.8a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a2) (2024-12-02)
 
