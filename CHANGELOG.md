@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a1) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.0a2...0.7.1a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): restore the missing pl-PL and ru-RU dialogs [\#130](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/130) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.0a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.0a2) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.0a1...0.7.0a2)
@@ -448,11 +456,6 @@
 ## [0.0.8a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a2) (2024-12-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a1...0.0.8a2)
-
-**Merged pull requests:**
-
-- Release 0.0.8a2 [\#26](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
-- import galician translations [\#25](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/25) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.8a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a1) (2024-11-25)
 
