@@ -1,0 +1,6 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Filmaren maisua",
+  "description": "Bilatu filmei, aktoreei eta ekoizpen-xehetasunei buruzko informazioa. Ahotsa duen film bati buruzko informazioa erraz aurki dezakezu."
+}

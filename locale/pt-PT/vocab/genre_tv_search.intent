@@ -1,0 +1,7 @@
+# machine translation from en-US, unvouched
+(lista|encontra|mostra) (séries|programas de televisão|programas de TV) que sejam [de] {genre}
+(lista|encontra|mostra) (séries|programas de televisão|programas de TV) de {genre}
+(mostra|sugere|dá) [me] [algumas] (séries|programas de televisão) de {genre}
+quero ver [uma|algumas] (série|séries|programa de televisão|programas de televisão) de {genre}
+quero ver [um|uns] {genre}
+mostra (|me|nos) (|algumas) séries de {genre}

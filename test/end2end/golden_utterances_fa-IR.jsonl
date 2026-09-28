@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "یک توصیف از فیلم را دریافت کنید Stripes", "lang": "fa-IR", "intent_label": "movie_description.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "فهرست فیلم هایی که در کمدی", "lang": "fa-IR", "intent_label": "movie_genre_search.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "چه کسی در فیلم بازی می کند Stripes", "lang": "fa-IR", "intent_label": "movie_cast.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
