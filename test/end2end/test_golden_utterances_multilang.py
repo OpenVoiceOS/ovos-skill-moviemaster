@@ -25,6 +25,10 @@ on that repo's dev branch): one MiniCroft is booted per locale, in turn,
 torn down when the module's tests finish. Only the pure-Python, swig-free
 padacioso template engine is booted (no padatious training phase, so no
 "mycroft.skills.trained" wait across many locales).
+
+The needs_manual and machine_generated row fields are provenance metadata.
+Every row runs as a real assertion, and a native reviewer clears needs_manual
+by editing the row.
 """
 import json
 from pathlib import Path
@@ -63,19 +67,9 @@ def _candidates(skill_id: str, intent_label: str) -> set:
 
 def _load_rows(lang):
     path = END2END_DIR / f"golden_utterances_{lang}.jsonl"
-    rows = []
-    needs_manual = 0
     with open(path, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            row = json.loads(line)
-            if row.get("needs_manual"):
-                needs_manual += 1
-                continue
-            rows.append(row)
-    assert rows or needs_manual, f"{lang}: no golden rows"
+        rows = [json.loads(line) for line in f if line.strip()]
+    assert rows, f"{lang}: no golden rows"
     return rows
 
 
@@ -159,3 +153,24 @@ def test_cross_language_negative(negative):
     types = _types(mc, text, lang, f"negative-{lang}-{text}")
     claimed = any(t.startswith(f"{SKILL_ID}:") for t in types)
     assert not claimed, f"[{lang}] {text!r} was incorrectly claimed by {SKILL_ID}"
+
+
+def test_every_shipping_locale_has_a_golden_file():
+    golden = {p.stem.split("_", 2)[2] for p in END2END_DIR.glob("golden_utterances_*.jsonl")}
+    locale_root = END2END_DIR.parents[1] / "locale"
+    shipping = {d.name for d in locale_root.iterdir() if d.is_dir() and any(d.rglob("*.intent"))}
+    assert golden == shipping, f"golden files {sorted(golden ^ shipping)} differ from shipping locales"
+
+
+def test_provenance_counts_per_locale():
+    total = 0
+    for lang in LANGS:
+        rows = _load_rows(lang)
+        for row in rows:
+            assert isinstance(row.get("needs_manual"), bool), (
+                f"[{lang}] {row['utterance']!r}: needs_manual is {row.get('needs_manual')!r}, not a bool"
+            )
+        flagged = sum(1 for row in rows if row["needs_manual"])
+        print(f"{lang} rows={len(rows)} needs_manual={flagged}")
+        total += flagged
+    assert total == 115
