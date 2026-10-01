@@ -63,19 +63,9 @@ def _candidates(skill_id: str, intent_label: str) -> set:
 
 def _load_rows(lang):
     path = END2END_DIR / f"golden_utterances_{lang}.jsonl"
-    rows = []
-    needs_manual = 0
     with open(path, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            row = json.loads(line)
-            if row.get("needs_manual"):
-                needs_manual += 1
-                continue
-            rows.append(row)
-    assert rows or needs_manual, f"{lang}: no golden rows"
+        rows = [json.loads(line) for line in f if line.strip()]
+    assert rows, f"{lang}: no golden rows"
     return rows
 
 
@@ -159,3 +149,10 @@ def test_cross_language_negative(negative):
     types = _types(mc, text, lang, f"negative-{lang}-{text}")
     claimed = any(t.startswith(f"{SKILL_ID}:") for t in types)
     assert not claimed, f"[{lang}] {text!r} was incorrectly claimed by {SKILL_ID}"
+
+
+def test_every_shipping_locale_has_a_golden_file():
+    golden = {p.stem.split("_", 2)[2] for p in END2END_DIR.glob("golden_utterances_*.jsonl")}
+    locale_root = END2END_DIR.parents[1] / "locale"
+    shipping = {d.name for d in locale_root.iterdir() if d.is_dir() and any(d.rglob("*.intent"))}
+    assert golden == shipping, f"golden files {sorted(golden ^ shipping)} differ from shipping locales"
