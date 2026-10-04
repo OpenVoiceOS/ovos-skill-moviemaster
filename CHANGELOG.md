@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.2a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.2a1) (2026-10-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.1a3...0.7.2a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): strip the dead Persian question mark from fa-IR movie\_genres lines [\#136](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/136) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.1a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.1a3) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.1a2...0.7.1a3)
@@ -420,10 +428,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8...V0.0.8a8)
 
-**Merged pull requests:**
-
-- Add Catalan translation [\#31](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/31) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [0.0.8](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8) (2025-02-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a7...0.0.8)
@@ -452,7 +456,6 @@
 **Merged pull requests:**
 
 - Release 0.0.8a5 [\#33](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/33) ([github-actions[bot]](https://github.com/apps/github-actions))
-- fix automations [\#32](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/32) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.8a3](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a3) (2024-12-02)
 
