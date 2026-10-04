@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Movie Master",
+  "description": "Hitta information om filmer, skådespelare och produktionsdetaljer. Hitta enkelt information om en film med rösten.",
+  "examples": [
+    "Vad handlar filmen _______ om?",
+    "Berätta om filmen _______",
+    "Vem medverkar i filmen _______?",
+    "Vilka genrer tillhör filmen _______?",
+    "Sök information om filmen _______.",
+    "När gjordes filmen _______?",
+    "Har du information om filmen _______?",
+    "Vilka populära filmer går på bio nu?",
+    "Vilka filmer rekommenderar du som liknar _______?",
+    "Hur lång är filmen _______?",
+    "Vilka är de högst rankade filmerna just nu?"
+  ],
+  "tags": [
+    "TMDB",
+    "Filmer",
+    "Skådespelare",
+    "underhållning"
+  ]
+}

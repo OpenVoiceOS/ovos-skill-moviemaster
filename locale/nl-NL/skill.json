@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Movie Master",
+  "description": "Vind informatie over films, acteurs en productiedetails. Zoek eenvoudig met je stem informatie over een film op.",
+  "examples": [
+    "Waar gaat de film _______ over?",
+    "Vertel me over de film _______",
+    "Wie speelt er in de film _______?",
+    "Tot welke genres behoort de film _______?",
+    "Zoek informatie over de film _______.",
+    "Wanneer is de film _______ gemaakt?",
+    "Heb je informatie over de film _______?",
+    "Welke films zijn nu populair?",
+    "Welke films raad je aan die op _______ lijken?",
+    "Hoe lang is de film _______?",
+    "Welke films hebben de hoogste beoordelingen?"
+  ],
+  "tags": [
+    "TMDB",
+    "Films",
+    "Acteurs",
+    "entertainment"
+  ]
+}

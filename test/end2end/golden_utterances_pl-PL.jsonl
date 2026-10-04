@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "uzyskać opis filmu Stripes", "lang": "pl-PL", "intent_label": "movie_description.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "lista filmów, które są komedia", "lang": "pl-PL", "intent_label": "movie_genre_search.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}
+{"skill_id": "ovos-skill-moviemaster.openvoiceos", "utterance": "który działa w filmie Stripes", "lang": "pl-PL", "intent_label": "movie_cast.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": true}

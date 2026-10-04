@@ -1,0 +1,24 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Movie Master",
+  "description": "Find information about movies, actors, and production details. Easily find information about a movie with your voice.",
+  "examples": [
+    "lista działanie",
+    "który gra w filmie _______",
+    "opis filmu _______",
+    "pokaż filmy działanie",
+    "Co to za flic? _______",
+    "pokaż popularne filmy",
+    "lista filmów jak _______",
+    "Ile czasu ma film _______",
+    "lista top filmów",
+    "Kiedy był film _______ uwolnione"
+  ],
+  "tags": [
+    "TMDB",
+    "Movies",
+    "Actors",
+    "entertainment"
+  ]
+}
