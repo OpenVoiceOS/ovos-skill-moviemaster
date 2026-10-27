@@ -27,17 +27,13 @@ import pytest
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
 from ovos_date_parser import nice_date
-from ovoscope import get_minicroft
+from ovoscope.routing import PIPELINE, TALLY, get_prototype_minicroft
 
 import ovos_skill_moviemaster as skill_module
 
 SKILL_ID = "ovos-skill-moviemaster.openvoiceos"
 LANG = "en-US"
-PIPELINE = [
-    "ovos-padatious-pipeline-plugin-high",
-    "ovos-padatious-pipeline-plugin-medium",
-    "ovos-padatious-pipeline-plugin-low",
-]
+MOVIE_YEAR = f"{SKILL_ID}:movie_year"
 
 DIALOG_DIR = Path(__file__).resolve().parents[2] / "locale" / "en-US" / "dialog"
 
@@ -71,7 +67,7 @@ def minicroft():
     movie_patcher.start()
     tmdb_patcher.start()
     try:
-        mc = get_minicroft([SKILL_ID], lang=LANG)
+        mc = get_prototype_minicroft([SKILL_ID], lang=LANG)
         loader = mc.plugin_skills[SKILL_ID]
         # Guarantee a truthy api_key regardless of whatever real value a
         # host settings.json for this skill id might otherwise supply --
@@ -97,13 +93,17 @@ def minicroft():
 
 
 def _spoken(mc, utterance, session_id, timeout=30):
+    """The spoken utterances, and every message type the request fired."""
     spoken = []
-    handler = lambda m: spoken.append(m.data.get("utterance", ""))
-    mc.bus.on("speak", handler)
+    types = []
+    on_speak = lambda m: spoken.append(m.data.get("utterance", ""))
+    on_message = lambda m: types.append(Message.deserialize(m).msg_type)
+    mc.bus.on("speak", on_speak)
+    mc.bus.on("message", on_message)
     try:
         session = Session(session_id)
         session.lang = LANG
-        session.pipeline = list(PIPELINE)
+        session.pipeline = PIPELINE
         mc.bus.emit(Message(
             "recognizer_loop:utterance",
             {"utterances": [utterance], "lang": LANG},
@@ -115,8 +115,9 @@ def _spoken(mc, utterance, session_id, timeout=30):
         # give a slow handler a little more room after the first utterance
         time.sleep(1.0)
     finally:
-        mc.bus.remove("speak", handler)
-    return spoken
+        mc.bus.remove("speak", on_speak)
+        mc.bus.remove("message", on_message)
+    return spoken, types
 
 
 @pytest.mark.timeout(60)
@@ -128,8 +129,9 @@ def test_movie_year_speaks_the_fetched_year_and_title(minicroft):
     dialog_template = (DIALOG_DIR / "movie_year.dialog").read_text(encoding="utf-8")
     assert "{movie}" in dialog_template and "{year}" in dialog_template
 
-    spoken = _spoken(
-        minicroft, "what year was the movie the matrix released", "effect-movie-year")
+    utterance = "what year was the movie the matrix released"
+    spoken, types = _spoken(minicroft, utterance, "effect-movie-year")
+    TALLY.assert_routed(utterance, MOVIE_YEAR, types)
     joined = " ".join(spoken)
 
     # Computed independently of the skill: same rendering call it uses for

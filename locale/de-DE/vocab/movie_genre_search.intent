@@ -1,2 +1,2 @@
-(suche|finde) (movies|filme|Streifen) aus der Gruppe (a| ) {genre}
-(suche|finde) {genre} (movies|Filme|Streifen)
+(suche|finde) (movies|filme|streifen) aus der gruppe (a| ) {genre}
+(suche|finde) {genre} (movies|filme|streifen)
