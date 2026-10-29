@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.3a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.3a1) (2026-10-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.2a2...0.7.3a1)
+
+**Merged pull requests:**
+
+- fix: speak a dialog when movie\_recommendations finds no movie [\#141](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/141) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- test: golden rows for every intent in es-CO, fa-IR, pl-PL, ru-RU and fr-FR, and a locale parity check [\#140](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/140) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.2a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.2a2) (2026-10-29)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.2a1...0.7.2a2)
@@ -400,17 +409,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.10a1...V0.0.10)
 
-**Merged pull requests:**
-
-- Release 0.0.10a1 [\#39](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/39) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.10a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.10a1) (2025-02-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.9...0.0.10a1)
-
-**Merged pull requests:**
-
-- Translations update [\#38](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/38) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.9](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.9) (2025-02-27)
 
@@ -419,10 +420,6 @@
 ## [V0.0.9](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/V0.0.9) (2025-02-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a9...V0.0.9)
-
-**Merged pull requests:**
-
-- Release 0.0.8a9 [\#37](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/37) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.8a9](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a9) (2025-02-27)
 
@@ -440,17 +437,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a7...0.0.8)
 
-**Merged pull requests:**
-
-- Release 0.0.8a7 [\#36](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/36) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.8a7](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a7) (2025-02-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.8a6...0.0.8a7)
-
-**Merged pull requests:**
-
-- Release 0.0.8a6 [\#35](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/35) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.8a6](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.8a6) (2025-02-27)
 
