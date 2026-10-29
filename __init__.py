@@ -92,6 +92,7 @@ class MovieMaster(OVOSSkill):
             self.speak_dialog("no_valid_api", {})
             return
         self._configure_tmdb()
+        self._active_movie = None
         for m in Movie().search(movie):
             if fuzzy_match(m.title, movie) >= self.settings.get("match_confidence"):
                 self.active_movie = m
@@ -104,6 +105,7 @@ class MovieMaster(OVOSSkill):
             self.speak_dialog("no_valid_api", {})
             return
         self._configure_tmdb()
+        self._active_person = None
         for p in Person().search(person):
             if fuzzy_match(p.name, person) >= self.settings.get("match_confidence"):
                 self.active_person = p
@@ -253,6 +255,8 @@ class MovieMaster(OVOSSkill):
                 else:
                     self.speak_dialog("movie_year_error", {
                         "movie": self.active_movie.title})
+            else:
+                self.speak_dialog("no_info", {"movie": movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -265,16 +269,18 @@ class MovieMaster(OVOSSkill):
         LOG.debug(f"requested cast for movie {movie}")
         self._search_for_movie(movie)
         try:
-            if self.active_movie and self.active_movie.id:
-                LOG.debug(f"active_movie {self.active_movie}")
-                cast = []
-                credits = Movie().credits(self.active_movie.id)
-                LOG.debug(f"credits {credits}")
-                for c in Movie().credits(self.active_movie.id)["cast"]:
-                    cast.append(c)
-                    if len(cast) >= self.search_depth:
-                        break
-                LOG.debug(f"{self.active_movie} cast: {cast}")
+            if not (self.active_movie and self.active_movie.id):
+                self.speak_dialog("no_info", {"movie": movie})
+                return
+            LOG.debug(f"active_movie {self.active_movie}")
+            cast = []
+            credits = Movie().credits(self.active_movie.id)
+            LOG.debug(f"credits {credits}")
+            for c in Movie().credits(self.active_movie.id)["cast"]:
+                cast.append(c)
+                if len(cast) >= self.search_depth:
+                    break
+            LOG.debug(f"{self.active_movie} cast: {cast}")
             # Create a list to store the cast to be included in the dialog
             actor_list, last_actor = self._create_dialog_list(cast)
             self.speak_dialog("movie_cast", {
@@ -304,6 +310,8 @@ class MovieMaster(OVOSSkill):
                 else:
                     self.speak_dialog("movie_genre_single", {
                         "movie": movie, "genre": genres[0].name})
+            else:
+                self.speak_dialog("no_info", {"movie": movie})
         # If the title can not be found, it creates an IndexError
         except IndexError:
             self.speak_dialog("no_info", {"movie": movie})
@@ -333,6 +341,8 @@ class MovieMaster(OVOSSkill):
                 movie_runtime = Movie().details(self.active_movie.id).runtime
                 self.speak_dialog("movie_runtime", {
                     "movie": movie, "runtime": movie_runtime})
+            else:
+                self.speak_dialog("no_info", {"movie": movie})
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
@@ -388,7 +398,7 @@ class MovieMaster(OVOSSkill):
 
         # If the title can not be found, it creates an IndexError
         except IndexError:
-            self.speak_dialog("no_info", {"movie": movie})
+            self.speak_dialog("no_info_general")
 
     @intent_handler("movie_top.intent")
     def handle_top_movies(self, message):
