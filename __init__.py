@@ -343,17 +343,22 @@ class MovieMaster(OVOSSkill):
         """ Gets the top movies that are similar to the suggested movie."""
         movie = message.data.get("movie")
         LOG.debug(f"requested recommendations like the movie {movie}")
+        if not movie:
+            self.speak_dialog("no_info_general")
+            return
         self._search_for_movie(movie)
+        if not self.active_movie:
+            if self.api_key:
+                self.speak_dialog("no_info", {"movie": movie})
+            return
         try:
-            if self.active_movie:
-                recommendation_list = []
-                for r in Movie().recommendations(self.active_movie.id):
-                    recommendation_list.append(r)
-                    if len(recommendation_list) >= self.search_depth:
-                        break
-                movie_list, last_movie = self._create_dialog_list(
-                    recommendation_list)
-
+            recommendation_list = []
+            for r in Movie().recommendations(self.active_movie.id):
+                recommendation_list.append(r)
+                if len(recommendation_list) >= self.search_depth:
+                    break
+            movie_list, last_movie = self._create_dialog_list(
+                recommendation_list)
             self.speak_dialog("movie_recommendations", {
                 "movielist": movie_list, "lastmovie": last_movie, "movie": movie})
 
