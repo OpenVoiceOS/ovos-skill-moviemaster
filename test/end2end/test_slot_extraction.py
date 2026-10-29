@@ -1,26 +1,19 @@
 """Slot-extraction end-to-end coverage for ovos-skill-moviemaster (en-US).
 
 Routing to the right ``.intent`` file is necessary but not sufficient: the
-handler also needs the ``{movie}``/{genre}`` slot value padatious extracted
-from the utterance. This suite fires real utterances through the same
-MiniCroft/padatious pipeline as ``test_golden_utterances.py`` and asserts on
-the slot value carried by the matched bus message, not just its type.
+handler also needs the ``{movie}``/``{genre}`` slot value extracted from the
+utterance. This suite fires real utterances through a MiniCroft and asserts
+on the slot value carried by the matched bus message, not just its type.
 """
-import time
-
 import pytest
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
-from ovoscope import get_minicroft
+from ovos_spec_tools import canonical_intent_topic
+from ovoscope import CaptureSession
+from ovoscope.routing import PIPELINE, TALLY, get_prototype_minicroft
 
 SKILL_ID = "ovos-skill-moviemaster.openvoiceos"
 LANG = "en-US"
-
-PIPELINE = [
-    "ovos-padatious-pipeline-plugin-high",
-    "ovos-padatious-pipeline-plugin-medium",
-    "ovos-padatious-pipeline-plugin-low",
-]
 
 # (utterance, intent basename, slot name, expected slot value)
 SLOT_CASES = [
@@ -47,40 +40,33 @@ SLOT_CASES = [
 
 @pytest.fixture(scope="module")
 def minicroft():
-    mc = get_minicroft([SKILL_ID])
+    mc = get_prototype_minicroft([SKILL_ID], lang=LANG)
     yield mc
     mc.stop()
 
 
-def _fire(mc, text, session_id, listen_types, timeout=30):
-    captured = []
-    handler = lambda msg: captured.append(msg)
-    for msg_type in listen_types:
-        mc.bus.on(msg_type, handler)
-    try:
-        session = Session(session_id)
-        session.lang = LANG
-        session.pipeline = list(PIPELINE)
-        mc.bus.emit(Message(
-            "recognizer_loop:utterance",
-            {"utterances": [text], "lang": LANG},
-            {"session": session.serialize()},
-        ))
-        deadline = time.monotonic() + timeout
-        while not captured and time.monotonic() < deadline:
-            time.sleep(0.2)
-    finally:
-        for msg_type in listen_types:
-            mc.bus.remove(msg_type, handler)
-    return captured
+def _fire(mc, text, session_id):
+    session = Session(session_id)
+    session.lang = LANG
+    session.pipeline = PIPELINE
+    message = Message(
+        "recognizer_loop:utterance",
+        {"utterances": [text], "lang": LANG},
+        {"session": session.serialize()},
+    )
+    capture = CaptureSession(mc, eof_msgs=["mycroft.skill.handler.start"])
+    capture.capture(message, timeout=30)
+    return capture.finish()
 
 
 @pytest.mark.parametrize("case", SLOT_CASES, ids=lambda c: c[0])
 def test_slot_value_extracted(minicroft, case):
     utterance, intent_base, slot, expected = case
-    candidates = {f"{SKILL_ID}:{intent_base}", f"{SKILL_ID}:{intent_base}.intent"}
-    messages = _fire(minicroft, utterance, f"slot-{utterance}", candidates)
-    assert messages, f"{utterance!r} did not route to {intent_base}.intent"
+    expected_type = f"{SKILL_ID}:{intent_base}"
+    messages = _fire(minicroft, utterance, f"slot-{utterance}")
+    TALLY.assert_routed(utterance, expected_type, [m.msg_type for m in messages])
+    messages = [m for m in messages
+                if canonical_intent_topic(m.msg_type) == expected_type]
     got = messages[0].data.get(slot)
     assert got is not None, (
         f"{utterance!r} matched {intent_base}.intent but slot {slot!r} was not "

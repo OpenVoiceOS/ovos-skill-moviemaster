@@ -2,10 +2,10 @@ podaj opis filmu {movie}
 uzyskać opis filmu {movie}
 podaj skrót filmu {movie}
 pobierz synopsy filmu {movie}
-Opowiedz mi o filmie {movie}
+opowiedz mi o filmie {movie}
 opowiedz nam o filmie {movie}
-Opowiedz nam o filmie {movie}
-Jaki jest film? {movie} o
+opowiedz nam o filmie {movie}
+jaki jest film? {movie} o
 opis filmu {movie}
 opisać film {movie}
 opisać flic {movie}

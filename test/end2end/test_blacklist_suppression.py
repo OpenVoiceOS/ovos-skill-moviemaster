@@ -23,33 +23,14 @@ meaning: without the blacklist file both halves route to
 
 Other intents may legitimately answer the probe, because it carries
 another question's word. Only ``movie_runtime`` is asserted against.
-
-Two limits, measured and named rather than hidden:
-
-* eu-ES does not discriminate. Appending ANY word to the Basque control
-  stops the template matching on its own, so the eu-ES probe passes
-  with the blacklist file removed as well. The row still asserts real
-  behaviour, but it is not evidence that the eu-ES file works. Every
-  other locale fails with its file removed.
-* fr-FR uses ``synopsis`` and not a hyphenated entry. padacioso matches
-  a space-free keyword by token equality, and an intent excluded that
-  way can still be returned: ``recommande-moi`` puts ``movie_runtime``
-  in ``_filter`` and ``calc_intent`` returns it anyway with conf 0.96.
-  The hyphenated entries stay in the locale file, because they are how
-  French writes the word; they do not bite until that is fixed.
 """
 import pytest
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
-from ovoscope import CaptureSession, get_minicroft
+from ovoscope import CaptureSession
+from ovoscope.routing import PIPELINE, TALLY, get_prototype_minicroft
 
 SKILL_ID = "ovos-skill-moviemaster.openvoiceos"
-
-PIPELINE = [
-    "ovos-padacioso-pipeline-plugin-high",
-    "ovos-padacioso-pipeline-plugin-medium",
-    "ovos-padacioso-pipeline-plugin-low",
-]
 
 FORBIDDEN = "movie_runtime"
 
@@ -78,8 +59,8 @@ _CURRENT = {"lang": None, "mc": None}
 def _get_minicroft(lang):
     if _CURRENT["lang"] != lang:
         _stop_current()
-        _CURRENT["mc"] = get_minicroft([SKILL_ID], max_wait=150, lang=lang,
-                                       default_pipeline=PIPELINE)
+        _CURRENT["mc"] = get_prototype_minicroft([SKILL_ID], max_wait=150,
+                                                 lang=lang)
         _CURRENT["lang"] = lang
     return _CURRENT["mc"]
 
@@ -116,14 +97,11 @@ def _types(mc, text, lang, session_id):
 @pytest.mark.parametrize("lang,control,word", CASES, ids=lambda v: str(v))
 def test_blacklist_word_suppresses_the_intent(lang, control, word):
     mc = _get_minicroft(lang)
-    forbidden = {f"{SKILL_ID}:{FORBIDDEN}", f"{SKILL_ID}:{FORBIDDEN}.intent"}
+    forbidden = f"{SKILL_ID}:{FORBIDDEN}"
 
     types = _types(mc, control, lang, f"control-{lang}")
-    assert any(t in forbidden for t in types), (
-        f"[{lang}] control {control!r} did not route to {FORBIDDEN}: {types!r}")
+    TALLY.assert_routed(control, forbidden, types)
 
     probe = f"{control} {word}"
     types = _types(mc, probe, lang, f"probe-{lang}")
-    assert not any(t in forbidden for t in types), (
-        f"[{lang}] {probe!r} still routed to {FORBIDDEN}; "
-        f"{lang}/vocab/{FORBIDDEN}.blacklist lists {word!r}: {types!r}")
+    TALLY.assert_not_routed(probe, [forbidden], types)
