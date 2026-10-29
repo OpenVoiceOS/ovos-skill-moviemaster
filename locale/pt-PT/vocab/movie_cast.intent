@@ -1,0 +1,4 @@
+# machine translation from en-US, unvouched
+quem (atua|representa|está) no (filme|fita) {movie}
+quem (atua|representa|está|protagoniza) no (filme|fita) {movie}
+(lista|mostra|indica) (|me|nos) o elenco do (filme|fita) {movie}

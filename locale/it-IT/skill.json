@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-moviemaster.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-moviemaster",
+  "name": "Movie Master",
+  "description": "Trova informazioni su film, attori e dettagli di produzione. Trova facilmente informazioni su un film con la voce.",
+  "examples": [
+    "Di cosa parla il film _______?",
+    "Parlami del film _______",
+    "Chi recita nel film _______?",
+    "A quali generi appartiene il film _______?",
+    "Cerca informazioni sul film _______.",
+    "Quando è stato girato il film _______?",
+    "Hai informazioni sul film _______?",
+    "Quali film popolari sono al cinema ora?",
+    "Quali film mi consigli simili a _______?",
+    "Quanto dura il film _______?",
+    "Quali sono i film più votati usciti?"
+  ],
+  "tags": [
+    "TMDB",
+    "Film",
+    "Attori",
+    "intrattenimento"
+  ]
+}

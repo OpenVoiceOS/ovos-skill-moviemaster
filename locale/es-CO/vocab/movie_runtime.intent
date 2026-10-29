@@ -1,0 +1,3 @@
+cuánto dura (la película|el filme) {movie}
+cuánto dura (la|el) (película|filme) {movie}
+obtiene la duración (de la|del) (película|filme) {movie}

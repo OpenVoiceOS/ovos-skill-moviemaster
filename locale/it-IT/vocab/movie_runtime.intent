@@ -1,0 +1,3 @@
+(quanto dura|quanto è lungo|qual è la( durata| lunghezza)) (del film|di|de) {movie}
+qual è la (durata|lunghezza) (del film|di) {movie}
+quanto (dura|è lungo) (il film|) {movie}

@@ -1,0 +1,6 @@
+(list|find|get) (tv shows|television shows|shows|series) that are [a] {genre}
+(list|find|get) {genre} (tv shows|television shows|shows|series)
+(show|suggest|get) [me] [a|some] {genre} (tv shows|television shows|shows|series)
+i want to watch [a|some] {genre} (tv show|tv shows|television show|television shows|show|shows|series)
+i want to watch [a|some] {genre}
+show (|me|us) (|some) {genre} (tv shows|television shows|shows)
