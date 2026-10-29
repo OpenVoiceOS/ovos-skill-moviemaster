@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.7.4a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.4a1) (2026-10-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.3a2...0.7.4a1)
+
+**Merged pull requests:**
+
+- fix: clear active movie on unmatched search; fix popular-list NameError [\#144](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/144) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.3a2](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.3a2) (2026-10-29)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.2a2...0.7.3a2)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.3a1...0.7.3a2)
+
+## [0.7.3a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.7.3a1) (2026-10-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.7.2a2...0.7.3a1)
 
 **Merged pull requests:**
 
@@ -373,10 +385,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.12a1...0.0.12)
 
-**Merged pull requests:**
-
-- Release 0.0.12a1 [\#42](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/42) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.12a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.12a1) (2025-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.11...0.0.12a1)
@@ -389,17 +397,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.11a1...V0.0.11)
 
-**Merged pull requests:**
-
-- Release 0.0.11a1 [\#41](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/41) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.11a1](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.11a1) (2025-05-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/compare/0.0.10...0.0.11a1)
-
-**Merged pull requests:**
-
-- fix: drop lingua\_franca [\#40](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/pull/40) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.10](https://github.com/OpenVoiceOS/ovos-skill-moviemaster/tree/0.0.10) (2025-05-15)
 
